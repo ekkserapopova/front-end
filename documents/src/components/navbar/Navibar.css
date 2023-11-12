@@ -1,0 +1,67 @@
+.navibar{
+    padding: 10px 50px !important; 
+    background-color: #1F3E47;
+    box-shadow: 0 3px 9px #0e252c;
+}
+
+.navbar-brand-content{
+    padding: 0px !important;
+    display: flex;
+}
+
+.logo-1{
+    margin-right: 10px !important;
+    font-family: 'Trattatello', fantasy;
+    font-size: 40px;
+    color: aliceblue;
+}
+
+.logo-2{
+    font-family: 'Trattatello', fantasy;
+    font-size: 40px;
+    color: aliceblue;
+}
+
+.nav-list{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.link{
+    color: aliceblue !important;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    margin-left: 10px;
+}
+
+.buttons-auth{
+    height: 35px;
+    margin: auto 0;
+    width: 256px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.auth{
+    background-color: #1F3E47 !important;
+    color: aliceblue !important;
+    border: 1px solid aliceblue !important;
+    border-radius: 8px;
+    height: 35px !important;
+    padding: 4px 10px !important;
+    margin: auto 0;
+}
+
+.auth:hover{
+    background-color: aliceblue !important;
+    color: #1F3E47 !important;
+}
+
+.log-in{
+    width: 68px;
+}
+
+.sign-in{
+    width: 178px;
+}

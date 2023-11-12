@@ -1,0 +1,102 @@
+.input-price{
+    display: flex;
+    z-index: 31;
+    margin-left: 10px;
+    /* margin-top: 70px; */
+}
+    
+
+.input-field-price-min{
+    position: relative;
+    border: none;
+    justify-content: center;
+    margin: auto 0;
+    /* margin-left: -150px; */
+    color: aliceblue;
+}
+
+.input-field-price-max{
+    position: relative;
+    border: none;
+    margin: auto 0;
+
+    justify-content: center;
+    margin-left: 1px;
+    
+}
+
+.filter-input{
+    width: 100px;
+    height: 35px;
+    /* margin-top: 80px; */
+    border: 1px solid aliceblue;
+    border-radius: 8px;
+    background-color: #35525A;
+}
+
+.min{
+    padding: 0 5px !important;
+    
+}
+
+.max{
+    padding: 0 5px !important 
+}
+
+.filter-input::placeholder{
+    font-size: 12px;
+}
+
+.errorTextMin{
+    /* flex:none; */
+    /* margin-top: 40px; */
+    margin-left: -100px;
+    color: red;
+    font-size: 10px;
+    margin-left: 15px !important; 
+    margin-bottom: 0;
+    position: absolute;
+}
+
+.errorTextMax{
+    /* flex:none; */
+    /* margin-top: 40px; */
+    margin-left: 100px;
+    color: red;
+    font-size: 10px;
+    margin-left: 15px !important; 
+    margin-bottom: 0;
+    position: absolute;
+}
+
+.filter-button{
+    background-color: aliceblue !important;
+    border: 1px solid aliceblue !important;
+    color: #35525A !important;
+    max-width: 80px;
+    height: 35px;
+    margin: auto 0;
+    z-index: 100;
+    margin-left: 1px;
+}
+
+
+.filter-button:hover{
+    background-color: rgb(200, 210, 219) !important;
+}
+
+.filter-btn{
+    background-color: aliceblue !important;
+    border: 1px solid aliceblue !important;
+    color: #35525A !important;
+    max-width: 80px;
+    height: 35px;
+    margin: auto 0;
+    z-index: 100;
+    margin-left: 10px;
+}
+
+.filter-btn:hover{
+    background-color: rgb(200, 210, 219) !important;
+
+}
