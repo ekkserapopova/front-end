@@ -23,7 +23,7 @@ const Document:FC = () =>{
     const search = async()=>{
         try{
             const result = await getDocument(id) 
-            console.log(result.results)
+            console.log("search func")
             await setDocument(result.results)
         } catch{
             setDocument(mockDocuments[id - 1])
@@ -35,6 +35,7 @@ const Document:FC = () =>{
         { label: document?.document_title!, link: '' } 
       ];
     useEffect(() =>{
+        console.log("use eff")
         search()
     }, [])
     return(

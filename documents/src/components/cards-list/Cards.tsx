@@ -11,11 +11,15 @@ interface CardsProps{
     document_price? : number
     document_buttonText? : string
     onClick? : () => void
+
+   
 }
 
 const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", document_image, document_overview, document_price, document_title, document_id}) => {
     const router = useNavigate()
     return(
+        <>
+        
         <div className="main-card">
             <Card.Img className="main-card-image" src={document_image}></Card.Img>
             <Card.Body className="main-card-body">
@@ -27,6 +31,7 @@ const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", documen
                 </div>
             </Card.Body>
         </div>
+        </>
     )
 }
 

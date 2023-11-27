@@ -7,6 +7,7 @@ import './DocumentsPage.css'
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs"
 // import SearchPrice from "../../components/filter-price/FilterPrice"
 import { mockDocuments } from "../../modules/get-documents"
+import Search from "../../components/search-form/Search"
 
 
 const Page: FC = () => {
@@ -17,21 +18,19 @@ const Page: FC = () => {
     
     const searchDocumentsPrice = async()=>{
         try{
-            console.log('clicked')
-            const results = await getDocumentsSearch(searchValue, Number(searchValueMin), searchValueMax === '' ? 10000 : Number(searchValueMax))
-            console.log(results)
+            console.log('searchDocumentsPrice')
+            const results = await getDocumentsSearch(searchValue, isNaN(Number(searchValueMax)) ? 0 : Number(searchValueMin), searchValueMax === '' ? 100000 : Number(searchValueMax))
+            console.log(searchValueMin, searchValueMax)
             setDocuments(results.results)
         } catch{
-            // const results = await getDocumentsSearch(searchValue, Number(searchValueMin), searchValueMax === '' ? 10000 : Number(searchValueMax))
-            // console.log(results)
             setDocuments(mockDocuments)
         }
 
     }
     const searchDocuments = async()=>{
         try{
+            console.log('searchDocuments')
             const results = await getDocuments(searchValue)
-            console.log(results)
             setDocuments(results.results)
         } catch{
             // console.log(results)
@@ -46,22 +45,25 @@ const Page: FC = () => {
 
     useEffect(() =>{
         searchDocuments()
+        
     }, [])
 
     return (
         <>
-           <Navibar value={searchValue}
+           <Navibar />
+            <Breadcrumbs items={breadcrumbsItems}/>
+
+            <Search value={searchValue}
                     setValue={(searchValue) => setSearchValue(searchValue)}
-                    onSubmit={searchDocumentsPrice}
+                    onSubmit={searchDocuments}
                     valueMax={isNaN(Number(searchValueMax)) ? searchValueMax.replace(/[^0-9]/g, '') : searchValueMax}
                     errorMax={isNaN(Number(searchValueMax)) ? true : false}
                     errorMin={isNaN(Number(searchValueMin)) ? true : false}
                     valueMin={isNaN(Number(searchValueMin)) ? searchValueMin.replace(/[^0-9]/g, '') : searchValueMin}
                     setValueMax={(searchValueMax) => setsearchValueMax(searchValueMax)}
                     setValueMin={(searchValueMin) => setsearchValueMin(searchValueMin)}
-                    onSubmitPrice={searchDocumentsPrice}
-                    />
-                    <Breadcrumbs items={breadcrumbsItems}/>
+                    onSubmitPrice={searchDocumentsPrice}/>
+
            <Row md={4} className="row-main">
                 {documents?.map((item, index) => (
                     <Col key={index} className="g-col">

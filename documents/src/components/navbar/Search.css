@@ -1,8 +1,8 @@
 .input-form{
+    margin-top: 20px;
     min-width: 350px;
     height: 47px;
-    margin: auto 0;
-    margin-left: 20px;
+    margin-left: 80px;
     display: flex;
 
 }
@@ -57,4 +57,8 @@
 
 .btn-search:active{
     background-color: aliceblue !important;
+}
+
+.filter-input{
+    color:aliceblue
 }

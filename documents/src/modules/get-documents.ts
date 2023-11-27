@@ -45,6 +45,23 @@ export interface DocumentResult {
     results: Documents
 }
 
+export const options = {
+  method: 'PUT',
+  credentials: 'include',
+  headers: {
+      'Content-Type': 'application/json',
+      "X-CSRFToken": document.cookie
+          .split('; ')
+          .filter(row => row.startsWith('csrftoken='))
+          .map(c => c.split('=')[1])[0]
+  },
+      body: JSON.stringify({
+          order_statusid: 8,
+           order_date: new Date().toISOString()
+      })
+};
+
+
 
 export const getDocuments = async (title = ''): Promise<DocumentsResult> => {
     try {
@@ -61,7 +78,7 @@ export const getDocuments = async (title = ''): Promise<DocumentsResult> => {
   export const getDocument = async (id: number): Promise<DocumentResult> => {
     try {
       const response = await fetch(`/documents/${id}`);
-      console.log(response)
+    //   console.log(response)
       const data = await response.json()
       return { resultCount: data.length, results: data}
       return response.json();
