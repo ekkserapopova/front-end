@@ -12,10 +12,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<DocumentsPage />} />
-        <Route path="/:id" element={<DocumentPage />} />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/signup" element={<SignupPage/>}/>
+        <Route path="/front-end" element={<DocumentsPage />} />
+        <Route path="/front-end/:id" element={<DocumentPage />} />
+        <Route path="/front-end/login" element={<LoginPage/>} />
+        <Route path="/front-end/signup" element={<SignupPage/>}/>
       </Routes>
     </Router>
   // </React.StrictMode>,
