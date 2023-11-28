@@ -35,6 +35,10 @@
     margin-left: 10px;
 }
 
+.link:hover{
+    color: rgb(203, 216, 227) !important;
+}
+
 .buttons-auth{
     height: 35px;
     margin: auto 0;

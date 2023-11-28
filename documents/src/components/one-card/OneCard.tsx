@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { Button, Card } from "react-bootstrap"
+import { Card } from "react-bootstrap"
 import './OneCard.css'
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
 
 interface CardProps{
@@ -13,12 +13,12 @@ interface CardProps{
 }
 
 const OneCard: FC<CardProps> = ({document_image, document_title, document_description}) => {
-    const router = useNavigate()
+    // const router = useNavigate()
     return(
         <>
         
     <Card className="card-more">
-    <Button className="back-to-cards" onClick={() => router(`/`, {replace: true})}>Назад</Button>
+    {/* <Button className="back-to-cards" onClick={() => router(`/`, {replace: true})}>Назад</Button> */}
         <Card.Img className="cardImage-more" variant="top" src={document_image}  height={100} width={100}/>
         <Card.Body className="more-info">                
             <div className="textStyle">

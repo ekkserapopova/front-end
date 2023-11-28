@@ -1,0 +1,90 @@
+.auth-card{
+    width: 400px;
+    height: 300px;
+    margin: 150px auto;
+    background-color: aliceblue;
+    border: 2px solid #142d35;
+}
+
+.auth-card-content{
+    background-color: aliceblue;
+    text-align: center;
+    margin: auto auto;
+}
+
+.auth-text{
+    color:#142d35;
+    background-color: aliceblue;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 10px auto;
+}
+
+.auth-input{
+    display: contents;
+}
+
+.auth-email{
+    display: flex;
+}
+
+/* Добавьте этот стиль для мигания курсора в инпутах */
+@keyframes cursorBlink {
+    0%, 100% {
+      caret-color: #000; /* Цвет вашего курсора */
+      font-size: 20px;
+    }
+    
+  }
+  
+  
+.auth-input-password,
+.auth-input-email{
+    width: 300px;
+    height: 40px;
+    margin: 10px auto;
+    background-color: aliceblue;
+    border: 1px solid #142d35;
+    color: aliceblue;
+    padding: 0 5px;
+    animation: cursorBlink 2s infinite;
+    color:#142d35;
+    font-size: 16px !important;
+    /* margin-bottom: 10px; */
+}
+
+.auth-input-password::placeholder,
+.auth-input-email::placeholder{
+    font-size: 16px;
+}
+
+.auth-to-sign{
+    background-color: aliceblue !important;
+    margin: 10px auto;
+}
+
+.auth-link{
+    background-color: aliceblue;
+}
+
+.auth-input-password:focus,
+.auth-input-email:focus{
+    outline: 1px solid rgb(219, 168, 252);
+}
+
+.auth-btn{
+    width: 300px;
+    margin: 0 auto;
+    background-color: #1F3E47;
+    border: 1px solid #1F3E47;
+}
+
+.auth-btn:hover{
+    background-color: #2e515b;
+    border: 1px solid #2e515b;
+}
+
+.auth-btn:active{
+    background-color: #2e515b !important; 
+    border: 1px solid #2e515b !important;
+}

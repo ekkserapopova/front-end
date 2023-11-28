@@ -5,7 +5,7 @@ import { Button, Nav,  Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } from 
 import './Navibar.css'
 import './Search.css'
 import '../filter-price//FilterPrice.css'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 interface SearchProps{
@@ -30,7 +30,7 @@ interface SearchProps{
 }
 
 const Navibar: FC<SearchProps> = () => {
-    
+    const router = useNavigate()
     return (
     <Navbar className="navibar" collapseOnSelect expand="lg" variant="light" >
         <NavbarBrand className="navbar-brand-content">
@@ -46,7 +46,7 @@ const Navibar: FC<SearchProps> = () => {
                 </Nav>
             </NavbarCollapse>
             <div className="buttons-auth">
-                <Button className="auth log-in">Войти</Button>
+                <Button className="auth log-in" onClick={() => router(`/login`, {replace: true})}>Войти</Button>
                 {/* <Button className="auth sign-in">Зарегистрироваться</Button> */}
             </div>
         </div>
