@@ -25,7 +25,7 @@ const LogIn: FC<LoginProps> = ({valuePassword, valueEmail, setvalueEmail, setval
                         <input placeholder="Пароль" value={valuePassword} onChange={(event => setvaluePassword(event.target.value))} className="auth-input-password" type="password"></input>
                     </div>
                     <Button className="auth-btn">Войти</Button>
-                    <div className="auth-to-sign">Не зарегистрированы? <Link to={"/signup"} className="auth-link">Регистрация</Link></div>
+                    <div className="auth-to-sign">Не зарегистрированы? <Link to={"/front-end/signup"} className="auth-link">Регистрация</Link></div>
                 </div>
             </Card>
         </>

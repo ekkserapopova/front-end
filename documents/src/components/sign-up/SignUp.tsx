@@ -37,7 +37,7 @@ const SignUp: FC<SignupProps> = ({valuePassword, valueEmail, valueFirstName, val
                         <input placeholder="Пароль" value={valuePassword} onChange={(event => setvaluePassword(event.target.value))} className="sign-input-password" type="search"></input>
                     </div>
                     <Button className="sign-btn">Зарегистрироваться</Button>
-                    <div className="sign-to-login">Уже зарегистрированы? <Link to={"/login"} className="sign-link">Войти</Link></div>
+                    <div className="sign-to-login">Уже зарегистрированы? <Link to={"/front-end/login"} className="sign-link">Войти</Link></div>
                 </div>
             </Card>
         </>

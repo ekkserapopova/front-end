@@ -35,18 +35,18 @@ const Navibar: FC<SearchProps> = () => {
     <Navbar className="navibar" collapseOnSelect expand="lg" variant="light" >
         <NavbarBrand className="navbar-brand-content">
             {/* <img src={logo} width={70} height={70}></img> */}
-            <NavLink to={"/"}><div className="logo-1">Смена фамилии</div></NavLink>
+            <NavLink to={"/front-end"}><div className="logo-1">Смена фамилии</div></NavLink>
         </NavbarBrand>
         <div className="nav-list">
             <NavbarToggle aria-controls="responsive-navbar-nav" />
             <NavbarCollapse id="responsive-navbar-nav" className="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <NavLink to={"/"} className="link" >Главная</NavLink>
+                    <NavLink to={"/front-end"} className="link" >Главная</NavLink>
                     {/* <Link className="link" to={"/"} >Заявки</Link> */}
                 </Nav>
             </NavbarCollapse>
             <div className="buttons-auth">
-                <Button className="auth log-in" onClick={() => router(`/login`, {replace: true})}>Войти</Button>
+                <Button className="auth log-in" onClick={() => router(`/front-end/login`, {replace: true})}>Войти</Button>
                 {/* <Button className="auth sign-in">Зарегистрироваться</Button> */}
             </div>
         </div>

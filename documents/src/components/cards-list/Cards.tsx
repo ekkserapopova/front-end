@@ -27,7 +27,7 @@ const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", documen
                 <Card.Text className="main-card-text">{document_overview}</Card.Text>
                 <div className="price-btn-container">
                     <div className="main-card-price">{document_price}руб.</div>
-                    <Button className="main-card-btn" onClick={() => router(`/${document_id}`, {replace: true})}>{document_buttonText}</Button>  
+                    <Button className="main-card-btn" onClick={() => router(`/front-end/${document_id}`, {replace: true})}>{document_buttonText}</Button>  
                 </div>
             </Card.Body>
         </div>

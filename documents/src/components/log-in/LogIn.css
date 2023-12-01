@@ -4,6 +4,7 @@
     margin: 150px auto;
     background-color: aliceblue;
     border: 2px solid #142d35;
+    border-radius: 8px;
 }
 
 .auth-card-content{

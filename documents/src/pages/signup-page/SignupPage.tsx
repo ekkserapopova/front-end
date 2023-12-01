@@ -14,7 +14,7 @@ const SignupnPage:FC = () =>{
     const [valueEmail, setvalueEmail] = useState('')
     
     const breadcrumbsItems = [
-        { label: 'Все документы', link: '/' },
+        { label: 'Все документы', link: '/front-end' },
         { label: 'Регистрация', link: '' } 
       ];
     useEffect(() =>{

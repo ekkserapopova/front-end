@@ -31,7 +31,7 @@ const Document:FC = () =>{
         
     }
     const breadcrumbsItems = [
-        { label: 'Все документы', link: '/' },
+        { label: 'Все документы', link: '/front-end' },
         { label: document?.document_title!, link: '' } 
       ];
     useEffect(() =>{

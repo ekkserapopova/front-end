@@ -3,11 +3,14 @@
     height: 500px;
     background-color: aliceblue;
     margin: 70px auto;
+    border-radius: 8px;
 }
 
 .sign-card-content{
     background-color: aliceblue;
     text-align: center;
+    border-radius: 8px;
+
 }
 
 .sign-text{
