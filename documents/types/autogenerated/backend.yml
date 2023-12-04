@@ -1,0 +1,525 @@
+swagger: '2.0'
+info:
+  title: Documents API
+  description: Test description
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: contact@snippets.local
+  license:
+    name: BSD License
+  version: v1
+host: 127.0.0.1:8000
+schemes:
+- http
+basePath: /
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+- Basic: []
+paths:
+  /applications/:
+    get:
+      operationId: applications_list
+      description: Возвращает список заявок
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - applications
+    parameters: []
+  /applications/{id}/:
+    get:
+      operationId: applications_read
+      description: Возвращает информацию об одной заявке
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - applications
+    put:
+      operationId: applications_update
+      description: Возвращает информацию об одной заявке
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Applications'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Applications'
+      tags:
+      - applications
+    delete:
+      operationId: applications_delete
+      description: Возвращает информацию об одной заявке
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - applications
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /applications/{id}/put/client/:
+    put:
+      operationId: applications_put_client_update
+      description: Обновляет информацию о документе клиент
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Applications'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Applications'
+      tags:
+      - applications
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /applications/{id}/put/moderator/:
+    put:
+      operationId: applications_put_moderator_update
+      description: Обновляет информацию о документе модератор
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Applications'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Applications'
+      tags:
+      - applications
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /documents/:
+    get:
+      operationId: documents_list
+      description: Возвращает список активных документов
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - documents
+    post:
+      operationId: documents_create
+      description: Возвращает список активных документов
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Documents'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Documents'
+      tags:
+      - documents
+    parameters: []
+  /documents/application/{id}/:
+    post:
+      operationId: documents_application_create
+      description: Добавляет новую заявку
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Applications'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Applications'
+      tags:
+      - documents
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /documents/{id}/:
+    get:
+      operationId: documents_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+      - documents
+    put:
+      operationId: documents_update
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/Documents'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Documents'
+      tags:
+      - documents
+    delete:
+      operationId: documents_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - documents
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /documents_applicaions/{document_id}/{application_id}/:
+    delete:
+      operationId: documents_applicaions_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - documents_applicaions
+    parameters:
+    - name: document_id
+      in: path
+      required: true
+      type: string
+    - name: application_id
+      in: path
+      required: true
+      type: string
+  /login:
+    post:
+      operationId: login_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - login
+    parameters: []
+  /logout:
+    post:
+      operationId: logout_create
+      description: ''
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+      - logout
+    parameters: []
+  /user/:
+    get:
+      operationId: user_list
+      description: |-
+        Класс, описывающий методы работы с пользователями
+        Осуществляет связь с таблицей пользователей в базе данных
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+      tags:
+      - user
+    post:
+      operationId: user_create
+      description: |-
+        Функция регистрации новых пользователей
+        Если пользователя c указанным в request email ещё нет, в БД будет добавлен новый пользователь.
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - user
+    parameters: []
+  /user/{id}/:
+    get:
+      operationId: user_read
+      description: |-
+        Класс, описывающий методы работы с пользователями
+        Осуществляет связь с таблицей пользователей в базе данных
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - user
+    put:
+      operationId: user_update
+      description: |-
+        Класс, описывающий методы работы с пользователями
+        Осуществляет связь с таблицей пользователей в базе данных
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - user
+    patch:
+      operationId: user_partial_update
+      description: |-
+        Класс, описывающий методы работы с пользователями
+        Осуществляет связь с таблицей пользователей в базе данных
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - user
+    delete:
+      operationId: user_delete
+      description: |-
+        Класс, описывающий методы работы с пользователями
+        Осуществляет связь с таблицей пользователей в базе данных
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - user
+    parameters:
+    - name: id
+      in: path
+      description: A unique integer value identifying this custom user.
+      required: true
+      type: integer
+definitions:
+  Applications:
+    required:
+    - new_surname
+    - reason_for_change
+    - client_id
+    - moderator_id
+    type: object
+    properties:
+      application_id:
+        title: Application id
+        type: integer
+        readOnly: true
+      date_of_application_creation:
+        title: Date of application creation
+        type: string
+        format: date-time
+        readOnly: true
+      date_of_application_acceptance:
+        title: Date of application acceptance
+        type: string
+        format: date-time
+        x-nullable: true
+      date_of_application_completion:
+        title: Date of application completion
+        type: string
+        format: date-time
+        x-nullable: true
+      new_surname:
+        title: New surname
+        type: string
+        maxLength: 50
+        minLength: 1
+      reason_for_change:
+        title: Reason for change
+        type: string
+        minLength: 1
+      application_status:
+        title: Application status
+        type: string
+        enum:
+        - created
+        - in_progress
+        - completed
+        - canceled
+        - deleted
+      client_id:
+        title: Client id
+        type: integer
+      moderator_id:
+        title: Moderator id
+        type: integer
+  Documents:
+    required:
+    - document_title
+    - document_name
+    - document_price
+    - document_status
+    type: object
+    properties:
+      document_id:
+        title: Document id
+        type: integer
+        readOnly: true
+      document_title:
+        title: Document title
+        type: string
+        maxLength: 100
+        minLength: 1
+      document_name:
+        title: Document name
+        type: string
+        maxLength: 100
+        minLength: 1
+      document_overview:
+        title: Document overview
+        type: string
+      document_description:
+        title: Document description
+        type: string
+      document_image:
+        title: Document image
+        type: string
+        maxLength: 10000
+        minLength: 1
+      document_price:
+        title: Document price
+        type: number
+      document_status:
+        title: Document status
+        type: string
+        enum:
+        - active
+        - deleted
+  User:
+    required:
+    - email
+    - password
+    - first_name
+    - last_name
+    - otchestvo
+    - pasport
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      is_staff:
+        title: Is staff
+        type: boolean
+        default: false
+      is_superuser:
+        title: Is superuser
+        type: boolean
+        default: false
+      last_login:
+        title: Последний вход
+        type: string
+        format: date-time
+        x-nullable: true
+      email:
+        title: Email адрес
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      password:
+        title: Пароль
+        type: string
+        maxLength: 150
+        minLength: 1
+      first_name:
+        title: Имя
+        type: string
+        maxLength: 150
+        minLength: 1
+      last_name:
+        title: Фамилия
+        type: string
+        maxLength: 150
+        minLength: 1
+      otchestvo:
+        title: Отчетсво
+        type: string
+        maxLength: 150
+        minLength: 1
+      pasport:
+        title: Паспортные данные(серия и номер)
+        type: string
+        maxLength: 11
+        minLength: 1
+      is_active:
+        title: Активен ли пользователь?
+        type: boolean
+      groups:
+        type: array
+        items:
+          title: Группы
+          type: integer
+        uniqueItems: true
+      user_permissions:
+        type: array
+        items:
+          title: Права доступа
+          type: integer
+        uniqueItems: true

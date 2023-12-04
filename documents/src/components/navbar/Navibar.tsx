@@ -6,6 +6,7 @@ import './Navibar.css'
 import './Search.css'
 import '../filter-price//FilterPrice.css'
 import { NavLink, useNavigate } from "react-router-dom";
+import setValueSearch from '../../pages/main-page/DocumentsPage'
 
 
 interface SearchProps{
@@ -30,18 +31,21 @@ interface SearchProps{
 }
 
 const Navibar: FC<SearchProps> = () => {
+    const resetSearch = () => {
+        setValueSearch('')
+    }
     const router = useNavigate()
     return (
     <Navbar className="navibar" collapseOnSelect expand="lg" variant="light" >
         <NavbarBrand className="navbar-brand-content">
             {/* <img src={logo} width={70} height={70}></img> */}
-            <NavLink to={"/front-end"}><div className="logo-1">Смена фамилии</div></NavLink>
+            <NavLink to={"/front-end"} onClick={resetSearch}><div className="logo-1">Смена фамилии</div></NavLink>
         </NavbarBrand>
         <div className="nav-list">
             <NavbarToggle aria-controls="responsive-navbar-nav" />
             <NavbarCollapse id="responsive-navbar-nav" className="responsive-navbar-nav">
                 <Nav className="mr-auto">
-                    <NavLink to={"/front-end"} className="link" >Главная</NavLink>
+                    <NavLink to={"/front-end"} className="link"  onClick={resetSearch}>Главная</NavLink>
                     {/* <Link className="link" to={"/"} >Заявки</Link> */}
                 </Nav>
             </NavbarCollapse>

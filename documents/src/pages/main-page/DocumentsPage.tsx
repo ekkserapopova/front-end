@@ -36,7 +36,6 @@ const Page: FC = () => {
             // console.log(results)
             setDocuments(mockDocuments)
         }
-        
     }
 
     const breadcrumbsItems = [
@@ -45,7 +44,6 @@ const Page: FC = () => {
 
     useEffect(() =>{
         searchDocuments()
-        
     }, [])
 
     return (

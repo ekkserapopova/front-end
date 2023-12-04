@@ -2,6 +2,8 @@ import { FC, useState } from "react"
 import { Button } from "react-bootstrap"
 // import './Search.css'
 import '../navbar/Search.css'
+import { FaFilter } from "react-icons/fa";
+
 
 
 interface SearchProps{
@@ -37,10 +39,11 @@ const Search:FC<SearchProps>  = ({setValueMax, setValueMin, showSearch, valueMax
             <div className="input-form">
                 <input onChange={(event => setValue && setValue(event.target.value))} value={value} className="input-field" type="search" placeholder={placeholderText}></input>
                 <Button className="btn-search" type="submit" onClick={onSubmit}>{buttonText}</Button>
-                <Button className="filter-btn" onClick={onSubmitFilter}>цена</Button>
+                <Button className="filter-btn" onClick={onSubmitFilter}><FaFilter className="icon" /></Button>
                 {filterVisible &&
 
                      <div className="input-price">
+                        <div className="price-word">Цена:</div>
                      <div className="input-field-price-min">
                          <input className="filter-input min" value={valueMin} onChange={(event =>setValueMin&& setValueMin(event.target.value))} placeholder={placeholderTextMin} type="search"></input>
                          {errorMin && <p className="errorTextMin">Введите число</p>}
