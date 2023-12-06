@@ -8,13 +8,23 @@ import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs"
 // import SearchPrice from "../../components/filter-price/FilterPrice"
 import { mockDocuments } from "../../modules/get-documents"
 import Search from "../../components/search-form/Search"
+import { AppDispatch, RootState } from "../../store/store"
+import {useDispatch, useSelector} from 'react-redux'
+import { setSeachValue } from "../../store/slices/searchSlice"
 
 
 const Page: FC = () => {
     const [documents, setDocuments] = useState<Documents[]>([])
-    const [searchValue, setSearchValue] = useState('')
+    // const [searchValue, setSearchValue] = useState('')
     const [searchValueMin, setsearchValueMin] = useState('')
     const [searchValueMax, setsearchValueMax] = useState('')
+
+    const dispatch: AppDispatch =  useDispatch()
+    const searchValue = useSelector((state:RootState) => state.search.value)
+
+    const handleSearchValueChange = (newValue:string) =>{
+        dispatch(setSeachValue(newValue))
+    }
     
     const searchDocumentsPrice = async()=>{
         try{
@@ -52,7 +62,7 @@ const Page: FC = () => {
             <Breadcrumbs items={breadcrumbsItems}/>
 
             <Search value={searchValue}
-                    setValue={(searchValue) => setSearchValue(searchValue)}
+                    setValue={(searchValue) => handleSearchValueChange(searchValue)}
                     onSubmit={searchDocuments}
                     valueMax={isNaN(Number(searchValueMax)) ? searchValueMax.replace(/[^0-9]/g, '') : searchValueMax}
                     errorMax={isNaN(Number(searchValueMax)) ? true : false}

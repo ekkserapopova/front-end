@@ -7,7 +7,7 @@ import { FaFilter } from "react-icons/fa";
 
 
 interface SearchProps{
-    value?:string
+    value:string
     setValue:(value:string) => void
     onSubmit?:()=>void
     buttonText?:string

@@ -7,9 +7,12 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import DocumentsPage from './pages/main-page/DocumentsPage.tsx'
 import LoginPage from './pages/login-page/LoginPage.tsx'
 import SignupPage from './pages/signup-page/SignupPage.tsx'
+import {Provider} from 'react-redux'
+import { store } from './store/store.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
+  <Provider store = {store}>
     <Router>
       <Routes>
         <Route path="/front-end" element={<DocumentsPage />} />
@@ -18,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/front-end/signup" element={<SignupPage/>}/>
       </Routes>
     </Router>
+    </Provider>
   // </React.StrictMode>,
 )
 // import React from 'react'
