@@ -1,0 +1,16 @@
+.Toastify__toast-body{
+    background-color: white;
+}
+
+.Toastify__toast-body > div:last-child{
+    background-color: white;
+}
+
+.toast .bi-check path {
+    fill: currentColor;
+    background-color: transparent; /* Убираем цвет фона у иконки check */
+  }
+
+svg{
+    background-color: white;
+}

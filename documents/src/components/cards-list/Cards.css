@@ -65,3 +65,20 @@
     font-size: 26px;
     font-weight: 200;
 }
+
+.add-to-app{
+    background-color: aliceblue;
+    border: 1px solid aliceblue;
+}
+
+.add-to-app:hover{
+    background-color: rgb(205, 217, 228) !important;
+    border: 1px solid aliceblue !important;
+}
+
+.plusik{
+    background: none;
+    width: 20px;
+    /* background-color: aliceblue; */
+    color: #1F3E47;
+}

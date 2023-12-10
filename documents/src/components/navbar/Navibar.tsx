@@ -17,32 +17,14 @@ import Cookies from "universal-cookie";
 const cookies = new Cookies();
 // console.log(cookies.get('session_id'))
 interface SearchProps{
-    value?:string
-    setValue?:(value:string) => void
-    onSubmit?:()=>void
-    buttonText?:string
-    placeholderText?:string
-
-    showFilter?:boolean
-    valueMin?:string
-    valueMax?:string
-    setValueMin?:(valueMin:string) => void
-    setValueMax?:(valueMax:string) => void
-    onSubmitPrice?:() => void
-    placeholderTextMin?:string
-    placeholderTextMax?:string
-    buttonTextPrice?:string
-    showSearch?: boolean
-    errorMin?: boolean
-    errorMax?: boolean
+    draft?: boolean
 }
 
-const Navibar: FC<SearchProps> = () => {
+const Navibar: FC<SearchProps> = ({draft = false}) => {
     // const resetSearch = () => {
     //     setValueSearch('')
     // }
     const dispatch = useDispatch();
-
     const logout = async () => {
         try {
             await axios.post('http://127.0.0.1:8000/logout', {
@@ -71,9 +53,10 @@ const Navibar: FC<SearchProps> = () => {
         <div className="nav-list">
             <NavbarToggle aria-controls="responsive-navbar-nav" />
             <NavbarCollapse id="responsive-navbar-nav" className="responsive-navbar-nav">
-                <Nav className="mr-auto">
+                <Nav className={draft ? "mr-auto" : "mr-auto2"} >
                     <NavLink to={"/front-end"} className="link"  /*onClick={resetSearch}*/>Главная</NavLink>
-                    {is_authenticated && <NavLink to={"/front-end"} className="link">Мои заявки</NavLink>}
+                    {is_authenticated && <NavLink to={"/front-end/userapplications"} className="link">Мои заявки</NavLink>}
+                    {is_authenticated && draft && <NavLink to={"/front-end/selecteddocs"} className="link">Текущая заявка</NavLink>}
                     {/* <Link className="link" to={"/"} >Заявки</Link> */}
                 </Nav>
             </NavbarCollapse>

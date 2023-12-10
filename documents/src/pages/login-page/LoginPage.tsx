@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux'
 import axios from 'axios'
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
-// import { RootState } from "../../store/store";
+import {toast } from 'react-toastify';
 
 
 const api = axios.create({
@@ -35,6 +35,7 @@ const LoginPage:FC = () =>{
             const userData = response.data;
             const cookies = new Cookies()
             const session_id = response.data["session_id"]
+            // cookieClient.Cookies.save('cookie-name', response.data, {path:'/'})
             cookies.set("session_id", session_id)
             dispatch(
                 loginUser({
@@ -45,6 +46,7 @@ const LoginPage:FC = () =>{
             );
             navigation('/front-end')
             } catch (error) {
+                toast.error("Неверный логин или пароль")
                 console.error('Ошибка при авторизации:', error);
             }
             
@@ -54,7 +56,7 @@ const LoginPage:FC = () =>{
     }, [])
     return(
         <>
-            <Navibar showSearch={false}/>
+            <Navibar />
             <Breadcrumbs items={breadcrumbsItems}/>
             <LogIn valueEmail={valueEmail}
                     valuePassword={valuePassword}

@@ -1,0 +1,79 @@
+/* DocumentsTable.css */
+
+.blurredTable {
+    filter: blur(4px); /* Заблюривание таблицы */
+    opacity: 0.6; /* Прозрачность для затемнения */
+    pointer-events: none; /* Позволяет "прокликивать" события через затемненную область */
+    transition: filter 0.3s ease, opacity 0.3s ease; /* Плавное применение эффекта */
+}
+  
+
+.trash{
+    cursor: pointer;
+    background: none ;
+    color: rgb(223, 233, 241);
+}
+
+.btnTrash{
+    background: none !important;
+    border: none;
+}
+  
+
+.tableDocs{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #35525A;
+    border-radius: 8px;
+    background: #000 !important;
+    --bs-table-bg: #35525A;
+    border-color: #1F3E47;
+    --bs-table-color: rgb(223, 233, 241)
+}
+
+.apps-values{
+    max-width: 800px;
+    /* display: flex; */
+}
+
+.input-surname{
+    width: 1000px;
+    border: 1px solid rgb(223, 233, 241);
+    padding: 5px;
+    color: aliceblue;
+    margin-left: 235px;
+    margin-bottom: 5px;
+}
+
+
+  
+
+.input-reason{
+    width: 1000px;
+    height: 100px;
+    border: 1px solid rgb(223, 233, 241);
+    padding: 5px;
+    color: aliceblue;
+    margin-left: 235px;
+}
+
+.form-surname{
+    display: flex;
+}
+
+.btn-oform{
+    margin-left: 665px;
+    background-color: rgb(223, 233, 241);
+    color: #1F3E47;
+    border: 1px solid rgb(223, 233, 241)
+}
+
+.btn-oform:hover{
+    background-color: rgb(189, 204, 218);
+    color: #1F3E47;
+    border: 1px solid rgb(189, 204, 218)
+}
+
+
+  

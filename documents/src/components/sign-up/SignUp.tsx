@@ -19,9 +19,11 @@ interface SignupProps{
     setvaluePassword : (valuePassword : string) => void
     setvalueEmail : (valueEmail : string) => void
 
+    onClickReg:()=>void
+
 }
 
-const SignUp: FC<SignupProps> = ({valuePassword, valueEmail, valueFirstName, valueOtch, valuePasport, valueSecondName, setvalueFirstName, setvalueOtch, setvaluePasport, setvalueSecondName, setvalueEmail, setvaluePassword}) => {
+const SignUp: FC<SignupProps> = ({valuePassword, valueEmail, valueFirstName, valueOtch, valuePasport, valueSecondName, setvalueFirstName, setvalueOtch, setvaluePasport, setvalueSecondName, setvalueEmail, setvaluePassword, onClickReg}) => {
     // const router = useNavigate()
     return(
         <>
@@ -36,7 +38,7 @@ const SignUp: FC<SignupProps> = ({valuePassword, valueEmail, valueFirstName, val
                         <input onChange={(event => setvalueEmail(event.target.value))} placeholder="Email" value={valueEmail} className="sign-input-email" type="search"></input>
                         <input placeholder="Пароль" value={valuePassword} onChange={(event => setvaluePassword(event.target.value))} className="sign-input-password" type="search"></input>
                     </div>
-                    <Button className="sign-btn">Зарегистрироваться</Button>
+                    <Button className="sign-btn" onClick={onClickReg}>Зарегистрироваться</Button>
                     <div className="sign-to-login">Уже зарегистрированы? <Link to={"/front-end/login"} className="sign-link">Войти</Link></div>
                 </div>
             </Card>

@@ -28,9 +28,9 @@ const Page: FC = () => {
     
     const searchDocumentsPrice = async()=>{
         try{
-            console.log('searchDocumentsPrice')
+            // console.log('searchDocumentsPrice')
             const results = await getDocumentsSearch(searchValue, isNaN(Number(searchValueMax)) ? 0 : Number(searchValueMin), searchValueMax === '' ? 100000 : Number(searchValueMax))
-            console.log(searchValueMin, searchValueMax)
+            // console.log(searchValueMin, searchValueMax)
             setDocuments(results.results)
         } catch{
             setDocuments(mockDocuments)
@@ -39,7 +39,7 @@ const Page: FC = () => {
     }
     const searchDocuments = async()=>{
         try{
-            console.log('searchDocuments')
+            // console.log('searchDocuments')
             const results = await getDocuments(searchValue)
             setDocuments(results.results)
         } catch{
@@ -58,7 +58,7 @@ const Page: FC = () => {
 
     return (
         <>
-           <Navibar />
+           <Navibar draft={true}/>
             <Breadcrumbs items={breadcrumbsItems}/>
 
             <Search value={searchValue}

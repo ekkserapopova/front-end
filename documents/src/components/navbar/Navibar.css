@@ -63,10 +63,16 @@
 }
 
 .log-in{
-    width: 68px;
+    width: 70px;
 }
 
+
 .mr-auto{
-    width: 200px;
+    width: 400px;
+    justify-content: space-between;
+}
+
+.mr-auto2{
+    width: 220px;
     justify-content: space-between;
 }
