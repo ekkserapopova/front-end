@@ -41,7 +41,7 @@ const Document:FC = () =>{
     return(
         <>
             
-            <Navibar showSearch={false}/>
+            <Navibar />
             <Breadcrumbs items={breadcrumbsItems}/>
             <Row className="row-more">
                 {document && 

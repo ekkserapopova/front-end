@@ -10,7 +10,6 @@ import { loginUser } from './store/slices/authSlice';
 import DocumentsPage from './pages/main-page/DocumentsPage';
 import DocumentPage from './pages/second-page/DocumentPage';
 import SignupPage from './pages/signup-page/SignupPage';
-import DraftPage from './pages/draft/DraftPage';
 import { ToastContainer } from 'react-toastify';
 import SelectedDocsPage from './pages/selected-docs-page/SelectedDocsPage';
 import './pages/selected-docs-page/s.css'
@@ -62,8 +61,7 @@ function App() {
         <Route path="/front-end/:id" element={<DocumentPage />} />
         <Route path="/front-end/login" element={<LoginPage/>} />
         <Route path="/front-end/signup" element={<SignupPage/>}/>
-        <Route path="/front-end/draft" element={<DraftPage/>}/>
-        <Route path="/front-end/selecteddocs" element={<SelectedDocsPage/>}/>
+        <Route path="/front-end/draft" element={<SelectedDocsPage/>}/>
         <Route path="/front-end/userapplications" element={<UserApplicationsPage/>}/>
       </Routes>
     </Router>

@@ -68,7 +68,6 @@ export const getDocuments = async (title = ''): Promise<DocumentsResult> => {
       const response = await fetch(`/documents?title=${title}`);
       const data = await response.json()
       return { resultCount: data.length, results: data}
-      return response.json();
     } catch (error) {
       console.error('Ошибка при запросе к бэкенду:', error);
       return { resultCount: mockDocuments.length, results: mockDocuments };
@@ -81,7 +80,6 @@ export const getDocuments = async (title = ''): Promise<DocumentsResult> => {
     //   console.log(response)
       const data = await response.json()
       return { resultCount: data.length, results: data}
-      return response.json();
     } catch (error) {
       console.error('Ошибка при запросе к бэкенду:', error);
       return { resultCount: mockDocuments.length, results: mockDocuments[id-1] };
@@ -97,7 +95,6 @@ export const getDocuments = async (title = ''): Promise<DocumentsResult> => {
       const response = await fetch(`/documents?title=${title}&minprice=${minprice}&maxprice=${maxprice}`);
       const data = await response.json()
       return { resultCount: data.length, results: data}
-      return response.json();
     } catch (error) {
       console.error('Ошибка при запросе к бэкенду:', error);
       return { resultCount: mockDocuments.length, results: mockDocuments };

@@ -56,7 +56,7 @@ const Navibar: FC<SearchProps> = ({draft = false}) => {
                 <Nav className={draft ? "mr-auto" : "mr-auto2"} >
                     <NavLink to={"/front-end"} className="link"  /*onClick={resetSearch}*/>Главная</NavLink>
                     {is_authenticated && <NavLink to={"/front-end/userapplications"} className="link">Мои заявки</NavLink>}
-                    {is_authenticated && draft && <NavLink to={"/front-end/selecteddocs"} className="link">Текущая заявка</NavLink>}
+                    {is_authenticated && draft && <NavLink to={"/front-end/draft"} className="link">Текущая заявка</NavLink>}
                     {/* <Link className="link" to={"/"} >Заявки</Link> */}
                 </Nav>
             </NavbarCollapse>

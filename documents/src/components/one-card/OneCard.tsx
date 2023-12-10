@@ -1,8 +1,13 @@
 import { FC } from "react"
-import { Card } from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
 import './OneCard.css'
-// import { useNavigate } from "react-router-dom"
-
+import { RootState } from "../../store/store"
+import { toast } from "react-toastify"
+import axios from "axios"
+import { useSelector } from 'react-redux'
+import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { FaPlus } from "react-icons/fa";
 
 interface CardProps{
     document_image: string
@@ -12,13 +17,53 @@ interface CardProps{
     document_description?: string
 }
 
+const api = axios.create({
+    baseURL: 'http://127.0.0.1:8000',
+    withCredentials: true,  
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
+
+interface DocumentParams{
+    id: string;
+    [key: string]: string | undefined;
+}
+
 const OneCard: FC<CardProps> = ({document_image, document_title, document_description}) => {
-    // const router = useNavigate()
+    const router = useNavigate()
+    const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
+    const params = useParams<DocumentParams>()
+    const id = Number(params.id)
+    const addDocToApp = async () => {
+        try {
+            await api.post(`/documents/application/${id}/`, {
+                new_surname: 'Не указана',
+                reason_for_change: 'Не указана'
+            });
+            toast.success('Документ успешно добавлен',{
+                style: {
+                    backgroundColor: 'white',
+                    color: 'black'
+                }
+            })
+            router('/front-end/draft')
+            // cookies.set("session_id", response.data["session_id"],)
+        } catch (error) {
+            toast.error('Документ уже добавлен',{
+                style: {
+                    backgroundColor: 'white',
+                    color: 'black'
+                }
+            })
+            router('/front-end')
+        }
+        
+    };
     return(
         <>
         
     <Card className="card-more">
-    {/* <Button className="back-to-cards" onClick={() => router(`/`, {replace: true})}>Назад</Button> */}
         <Card.Img className="cardImage-more" variant="top" src={document_image}  height={100} width={100}/>
         <Card.Body className="more-info">                
             <div className="textStyle">
@@ -28,7 +73,12 @@ const OneCard: FC<CardProps> = ({document_image, document_title, document_descri
                 <Card.Text className="more-description">{document_description}</Card.Text>
             </div>
         </Card.Body>
-        {/* <Button className="btn" color="black" onClick={() => router(`/document/${document_name}`, {replace: true})}>Подробнее</Button> */}
+        {is_authenticated && 
+                    <>
+                        <Button onClick={addDocToApp} className="add-to-app" style={{marginLeft:'1100px'}}><FaPlus className="plusik"/></Button>
+                    </>
+        } 
+                    
     </Card>
     </>
     )

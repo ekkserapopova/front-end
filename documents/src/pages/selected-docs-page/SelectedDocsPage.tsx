@@ -87,15 +87,35 @@ const SelectedRespPage = () => {
                     toast.success("Успешно")
                     navigation('/front-end/userapplications')
                 } catch{
-                    toast.error("Ошибка формирования")
+                    toast.error("Заполните все поля")
                 }
             }catch{
-                toast.error("Ошибка отправки")
+                toast.error("Заполните все поля")
             }
     
             
         } catch{
             console.log('не получена заявка');
+        }
+    }
+
+    const deleteApp = async () => {
+        try{
+            const app = await axios.get('http://127.0.0.1:8000/applications/', 
+            {
+                params:{
+                    status: 'created'
+                },
+                withCredentials: true
+            }
+            )
+            const id = app.data[0].application.application_id
+            console.log(id)
+            await axios.delete(`http://127.0.0.1:8000/applications/${id}/`, {withCredentials:true})
+            toast.success("Заявка удалена")
+            navigation('/front-end')
+        } catch{
+            toast.error("Заявка не создана")
         }
     }
 
@@ -113,7 +133,7 @@ const SelectedRespPage = () => {
         <div >
             <Navibar draft={true}/>
             <Breadcrumbs items={breadcrumbsItems}/>
-            {is_authenticated ? ( currentVac.length !== 0 ?
+            {is_authenticated ? 
             <div >
                 <div style={{
                         width:'1000px', 
@@ -133,8 +153,9 @@ const SelectedRespPage = () => {
                                 reason={reason}
                                 setReason={setReason}
                                 setSurname={setSurname}
-                                onSubmit={AddApp}/>
-            </div> : <div style={{fontSize: '30px', color: 'aliceblue', marginLeft: '500px', marginTop: '50px'}}>Вы не выбрали ни одного документа</div>)
+                                onSubmit={AddApp}
+                                onSubmitDelete={deleteApp}/>
+            </div> 
             : <div style={{fontSize: '30px', color: 'aliceblue', marginLeft: '530px', marginTop: '50px'}}>Необходимо авторизоваться</div>
         }
         </div>

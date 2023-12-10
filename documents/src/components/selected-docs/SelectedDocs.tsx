@@ -25,10 +25,11 @@ export type DocTableProps = {
     setSurname: (surname: string) => void;
     setReason: (reason:string) => void;
     onSubmit: () => void;
+    onSubmitDelete: () => void;
 };
 
 
-const DocumentsTable: FC<DocTableProps> = ({ docs,  surname, reason, setReason, setSurname, onSubmit}) => {
+const DocumentsTable: FC<DocTableProps> = ({ docs,  surname, reason, setReason, setSurname, onSubmit, onSubmitDelete}) => {
     const [documents, setDocuments] = useState(docs);
     const [loading, setLoading] = useState(false); 
     const navigation = useNavigate()
@@ -117,6 +118,7 @@ const DocumentsTable: FC<DocTableProps> = ({ docs,  surname, reason, setReason, 
                 <textarea placeholder="Причина" value={reason} onChange={(event => setReason(event.target.value))} className="input-reason" ></textarea>
             </div>
             <Button onClick={() => {onSubmit()}} className='btn-oform'>Оформить</Button>
+            <Button onClick={() => {onSubmitDelete()}} className='btn-delete'>Удалить</Button>
         </div>
         </>
     )

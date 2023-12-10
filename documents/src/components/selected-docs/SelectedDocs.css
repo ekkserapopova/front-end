@@ -63,7 +63,7 @@
 }
 
 .btn-oform{
-    margin-left: 665px;
+    margin-left: 645px;
     background-color: rgb(223, 233, 241);
     color: #1F3E47;
     border: 1px solid rgb(223, 233, 241)
@@ -73,6 +73,28 @@
     background-color: rgb(189, 204, 218);
     color: #1F3E47;
     border: 1px solid rgb(189, 204, 218)
+}
+
+.btn-oform:active{
+    background-color: rgb(189, 204, 218) !important;
+    border: 1px solid rgb(223, 233, 241) !important
+}
+
+.btn-delete{
+    background-color: rgb(223, 233, 241);;
+    color: #1F3E47;
+    border: 1px solid rgb(223, 233, 241)
+}
+
+.btn-delete:hover{
+    background-color: rgb(189, 204, 218);
+    color: #1F3E47;
+    border: 1px solid rgb(189, 204, 218)
+}
+
+.btn-delete:active{
+    background-color: rgb(189, 204, 218) !important;
+    border: 1px solid rgb(223, 233, 241) !important
 }
 
 
