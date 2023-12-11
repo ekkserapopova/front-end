@@ -47,7 +47,7 @@ const OneCard: FC<CardProps> = ({document_image, document_title, document_descri
                     color: 'black'
                 }
             })
-            router('/front-end/draft')
+            router('/front-end')
             // cookies.set("session_id", response.data["session_id"],)
         } catch (error) {
             toast.error('Документ уже добавлен',{
