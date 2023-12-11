@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-export type ReceivedVacancyData = {
+export type DocumentsData = {
     document_id: number,
     document_title: string,
     document_price: number,
@@ -20,7 +20,7 @@ export type ReceivedVacancyData = {
 const SelectedRespPage = () => {
     // const params = useParams();
     // const id = params.id === undefined ? '' : params.id;
-    const [currentVac, setCurrentVac] = React.useState([])
+    const [draft, setDraft] = React.useState([])
     const [surname, setSurname] = useState('')
     const [reason, setReason] = useState('')
     const navigation = useNavigate()
@@ -41,14 +41,14 @@ const SelectedRespPage = () => {
         });
         console.log(response.data[0])
 
-          const newArr = response.data[0].documents.map((raw: ReceivedVacancyData) => ({
+          const newArr = response.data[0].documents.map((raw: DocumentsData) => ({
             document_id: raw.document_id,
                 document_title: raw.document_title,
                 document_price: raw.document_price,
                 document_image: raw.document_image,
             }));
             console.log(newArr)
-        setCurrentVac(newArr)
+            setDraft(newArr)
         } catch(error) {
           throw error
         }
@@ -56,7 +56,7 @@ const SelectedRespPage = () => {
 
     const AddApp  = async () => {
         try{
-            if (currentVac.length === 0){
+            if (draft.length === 0){
                 toast.error("Выберите документы для замены")
                 return
             }
@@ -148,7 +148,7 @@ const SelectedRespPage = () => {
                         Добавленные документы
                     </div>
                 </div>
-                <DocumentsTable docs={currentVac}
+                <DocumentsTable docs={draft}
                                 surname={surname}
                                 reason={reason}
                                 setReason={setReason}
