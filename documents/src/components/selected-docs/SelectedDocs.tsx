@@ -74,9 +74,6 @@ const DocumentsTable: FC<DocTableProps> = ({ docs,  surname, reason, setReason, 
             setLoading(false);
         }
     }
-    
-
-
 
     return (
         <>

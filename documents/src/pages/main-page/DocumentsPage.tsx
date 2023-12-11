@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react"
 import Navibar from "../../components/navbar/Navibar"
-import { Documents, getDocuments, getDocumentsSearch} from "../../modules/get-documents"
+import { Documents, getDocumentsSearch} from "../../modules/get-documents"
 import { Col, Row } from "react-bootstrap"
 import Cards from "../../components/cards-list/Cards"
 import './DocumentsPage.css'
@@ -11,19 +11,31 @@ import Search from "../../components/search-form/Search"
 import { AppDispatch, RootState } from "../../store/store"
 import {useDispatch, useSelector} from 'react-redux'
 import { setSeachValue } from "../../store/slices/searchSlice"
+import { setSeachValueMin } from "../../store/slices/priceMinSlice"
+import { setSeachValueMax } from "../../store/slices/priceMaxSlice"
 
 
 const Page: FC = () => {
     const [documents, setDocuments] = useState<Documents[]>([])
     // const [searchValue, setSearchValue] = useState('')
-    const [searchValueMin, setsearchValueMin] = useState('')
-    const [searchValueMax, setsearchValueMax] = useState('')
+    // const [searchValueMin, setsearchValueMin] = useState('')
+    // const [searchValueMax, setsearchValueMax] = useState('')
 
     const dispatch: AppDispatch =  useDispatch()
     const searchValue = useSelector((state:RootState) => state.search.value)
+    const searchValueMin = useSelector((state:RootState) => state.min_price.min_value)
+    const searchValueMax = useSelector((state:RootState) => state.max_price.max_value)
 
     const handleSearchValueChange = (newValue:string) =>{
         dispatch(setSeachValue(newValue))
+    }
+
+    const handleSearchValueMin = (newValue:string) =>{
+        dispatch(setSeachValueMin(newValue))
+    }
+
+    const handleSearchValueMax = (newValue:string) =>{
+        dispatch(setSeachValueMax(newValue))
     }
     
     const searchDocumentsPrice = async()=>{
@@ -37,23 +49,13 @@ const Page: FC = () => {
         }
 
     }
-    const searchDocuments = async()=>{
-        try{
-            // console.log('searchDocuments')
-            const results = await getDocuments(searchValue)
-            setDocuments(results.results)
-        } catch{
-            // console.log(results)
-            setDocuments(mockDocuments)
-        }
-    }
 
     const breadcrumbsItems = [
         { label: 'Все документы', link:'' } // Link to the current page
       ];
 
     useEffect(() =>{
-        searchDocuments()
+        searchDocumentsPrice()
     }, [])
 
     return (
@@ -63,13 +65,13 @@ const Page: FC = () => {
 
             <Search value={searchValue}
                     setValue={(searchValue) => handleSearchValueChange(searchValue)}
-                    onSubmit={searchDocuments}
+                    onSubmit={searchDocumentsPrice}
                     valueMax={isNaN(Number(searchValueMax)) ? searchValueMax.replace(/[^0-9]/g, '') : searchValueMax}
                     errorMax={isNaN(Number(searchValueMax)) ? true : false}
                     errorMin={isNaN(Number(searchValueMin)) ? true : false}
                     valueMin={isNaN(Number(searchValueMin)) ? searchValueMin.replace(/[^0-9]/g, '') : searchValueMin}
-                    setValueMax={(searchValueMax) => setsearchValueMax(searchValueMax)}
-                    setValueMin={(searchValueMin) => setsearchValueMin(searchValueMin)}
+                    setValueMax={(searchValueMax) => handleSearchValueMax(searchValueMax)}
+                    setValueMin={(searchValueMin) => handleSearchValueMin(searchValueMin)}
                     onSubmitPrice={searchDocumentsPrice}/>
 
            <Row md={4} className="row-main">
