@@ -1,13 +1,14 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { Button, Card } from "react-bootstrap"
 import './OneCard.css'
 import { RootState } from "../../store/store"
 import { toast } from "react-toastify"
 import axios from "axios"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 import { FaPlus } from "react-icons/fa";
+import { appSetReset } from "../../store/slices/draftSlice"
 
 interface CardProps{
     document_image: string
@@ -35,6 +36,8 @@ const OneCard: FC<CardProps> = ({document_image, document_title, document_descri
     const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
     const params = useParams<DocumentParams>()
     const id = Number(params.id)
+    const dispatch = useDispatch();
+    const [appId, setAppId] = useState(-1);
     const addDocToApp = async () => {
         try {
             await api.post(`/documents/application/${id}/`, {
@@ -47,6 +50,10 @@ const OneCard: FC<CardProps> = ({document_image, document_title, document_descri
                     color: 'black'
                 }
             })
+            
+            draftApp()
+            console.log(appId)
+            dispatch(appSetReset({app:true, appId:appId}))
             router('/front-end')
             // cookies.set("session_id", response.data["session_id"],)
         } catch (error) {
@@ -57,9 +64,27 @@ const OneCard: FC<CardProps> = ({document_image, document_title, document_descri
                 }
             })
             router('/front-end')
-        }
-        
+        } 
     };
+
+    const draftApp = async () => {
+        try {
+          const app = await axios.get("http://127.0.0.1:8000/applications/", {
+            params: {
+              status: "created",
+            },
+            withCredentials: true,
+          });
+          
+          setAppId(app.data[0].application.application_id);
+          dispatch(appSetReset({app:true, appId:app.data[0].application.application_id}))
+          const appl = useSelector((state:RootState)  => state.draft.appId)
+          console.log(appl)
+        } catch {
+          console.log("нет черновика");
+        }
+      };
+
     return(
         <>
         

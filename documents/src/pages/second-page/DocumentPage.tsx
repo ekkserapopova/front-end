@@ -5,8 +5,9 @@ import { useParams } from "react-router-dom";
 import './DocumentPage.css'
 import OneCard from "../../components/one-card/OneCard";
 import Navibar from "../../components/navbar/Navibar";
-import { Documents, getDocument, mockDocuments } from "../../modules/get-documents";
+import { Documents,  mockDocuments } from "../../modules/get-documents";
 import Breadcrumbs from "../../components/breadcrumbs/Breadcrumbs";
+import axios from "axios";
 
 
 interface DocumentParams{
@@ -22,9 +23,9 @@ const Document:FC = () =>{
     
     const search = async()=>{
         try{
-            const result = await getDocument(id) 
+            const result = await axios.get(`http://127.0.0.1:8000/documents/${id}/`)
             console.log("search func")
-            await setDocument(result.results)
+            await setDocument(result.data)
         } catch{
             setDocument(mockDocuments[id - 1])
         }

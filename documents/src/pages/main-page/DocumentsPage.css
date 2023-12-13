@@ -12,4 +12,21 @@
 }
 
 
+.draft{
+    margin-left: 1270px;
+    background-color: aliceblue;
+    border: 1px solid aliceblue;
+    color: #1F3E47;
+    position: fixed;
+    z-index: 1000;
+}
+
+.draft:hover{
+    background-color: rgb(215, 221, 227) !important;
+    color: #1F3E47;
+    border: 1px solid rgb(215, 221, 227);
+}
+
+
+
 

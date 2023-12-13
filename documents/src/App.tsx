@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 import SelectedDocsPage from './pages/selected-docs-page/SelectedDocsPage';
 import './pages/selected-docs-page/s.css'
 import UserApplicationsPage from './pages/user-applications/UserApplicationsPage';
+import ApplicationPage from './pages/one-app-page/OneApplicationPage';
 //import { useCurrentRespId } from "./slices/RespSlices"
 
 const cookies = new Cookies();
@@ -63,21 +64,22 @@ function App() {
         <Route path="/front-end/signup" element={<SignupPage/>}/>
         <Route path="/front-end/draft" element={<SelectedDocsPage/>}/>
         <Route path="/front-end/userapplications" element={<UserApplicationsPage/>}/>
+        <Route path="/front-end/userapplications/:id" element={<ApplicationPage />}/>
       </Routes>
     </Router>
     <ToastContainer
-    position="top-center"
-    autoClose={1000}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    theme="light"
-    style={{ background: 'transparent'}}
-/>
+      position="top-center"
+      autoClose={1000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="light"
+      style={{ background: 'transparent'}}
+    />
 
     </div>
     );

@@ -1,0 +1,107 @@
+.card-app{
+    width: 800px;
+    background-color: #35525A !important;
+    margin: 20px auto 0 auto;
+}
+
+.more-app{
+    background-color: #35525A;
+}
+
+.more-app-info{
+    background-color: #35525A;
+    color: aliceblue;
+}
+
+.btn-oform{
+    margin-left: 0;
+    width: 120px;
+    background-color: rgb(223, 233, 241);
+    color: #1F3E47;
+    border: 1px solid rgb(223, 233, 241)
+}
+
+.btn-oform:hover{
+    background-color: rgb(189, 204, 218);
+    color: #1F3E47;
+    border: 1px solid rgb(189, 204, 218)
+}
+
+.btn-oform:active{
+    background-color: rgb(189, 204, 218) !important;
+    border: 1px solid rgb(223, 233, 241) !important
+}
+
+.btn-delete{
+    margin-left: 0;
+    width: 120px;
+    background-color: rgb(223, 233, 241);
+    color: #1F3E47;
+    border: 1px solid rgb(223, 233, 241)
+}
+
+.btn-delete:hover{
+    background-color: rgb(189, 204, 218);
+    color: #1F3E47;
+    border: 1px solid rgb(189, 204, 218)
+}
+
+.btn-delete:active{
+    background-color: rgb(189, 204, 218) !important;
+    border: 1px solid rgb(223, 233, 241) !important
+}
+
+.blurredTable {
+    filter: blur(4px); /* Заблюривание таблицы */
+    opacity: 0.6; /* Прозрачность для затемнения */
+    pointer-events: none; /* Позволяет "прокликивать" события через затемненную область */
+    transition: filter 0.3s ease, opacity 0.3s ease; /* Плавное применение эффекта */
+}
+  
+
+.trash{
+    cursor: pointer;
+    background: none ;
+    color: rgb(223, 233, 241);
+}
+
+.btnTrash{
+    background: none !important;
+    border: none;
+}
+  
+
+.tableDocs{
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #35525A;
+    border-radius: 8px;
+    background: #000 !important;
+    /* --bs-table-bg: #35525A; */
+    border-color: #1F3E47;
+    --bs-table-color: rgb(223, 233, 241)
+}
+
+.input-surname{
+    width: 800px;
+    border: 1px solid rgb(223, 233, 241);
+    padding: 5px;
+    color: aliceblue;
+    margin-left: 0;
+    margin-bottom: 5px;
+}
+
+.input-reason{
+    width: 800px;
+    height: 100px;
+    border: 1px solid rgb(223, 233, 241);
+    padding: 5px;
+    color: aliceblue;
+    margin-left: 0;
+}
+
+.apps-values{
+    margin-left:335px;
+    margin-right:auto;
+}

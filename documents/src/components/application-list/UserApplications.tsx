@@ -4,6 +4,7 @@ import '../selected-docs/SelectedDocs.css';
 import { Documents } from '../../api/DocumentsApi';
 import './UserApplications.css'
 import { ApplicationsProps } from '../../pages/user-applications/UserApplicationsPage';
+import { useNavigate } from 'react-router-dom';
 
 export type DocTableProps = {
     applications: ApplicationsProps[];
@@ -12,7 +13,7 @@ export type DocTableProps = {
 
 const UserApplications: React.FC<DocTableProps> = ({ applications }) => {
     const [userApplications, setUserApplications] = useState(applications);
-
+    const router = useNavigate()
     useEffect(() => {
         setUserApplications(applications);
     }, [applications]);
@@ -40,7 +41,7 @@ const UserApplications: React.FC<DocTableProps> = ({ applications }) => {
                     </thead>
                     <tbody>
                         {userApplications.map((applicationProps: ApplicationsProps) => (
-                            <tr key={applicationProps.application?.application_id}>
+                            <tr key={applicationProps.application?.application_id} className='table-row' onClick={() => router(`/front-end/userapplications/${applicationProps.application.application_id}`, {replace: true})}>
                                 <td>{applicationProps.application?.application_id ?? '-'}</td>
                                 <td>{applicationProps.application?.date_of_application_creation ? formatDate(applicationProps.application.date_of_application_creation) : '-'}</td>
                                 <td>{applicationProps.application?.date_of_application_acceptance ? formatDate(applicationProps.application.date_of_application_acceptance) : '-'}</td>

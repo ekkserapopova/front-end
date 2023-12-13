@@ -20,7 +20,7 @@ interface SearchProps{
     draft?: boolean
 }
 
-const Navibar: FC<SearchProps> = ({draft = false}) => {
+const Navibar: FC<SearchProps> = () => {
     // const resetSearch = () => {
     //     setValueSearch('')
     // }
@@ -53,10 +53,10 @@ const Navibar: FC<SearchProps> = ({draft = false}) => {
         <div className="nav-list">
             <NavbarToggle aria-controls="responsive-navbar-nav" />
             <NavbarCollapse id="responsive-navbar-nav" className="responsive-navbar-nav">
-                <Nav className={draft ? "mr-auto" : "mr-auto2"} >
+                <Nav className={"mr-auto2"} >
                     <NavLink to={"/front-end"} className="link"  /*onClick={resetSearch}*/>Главная</NavLink>
                     {is_authenticated && <NavLink to={"/front-end/userapplications"} className="link">Мои заявки</NavLink>}
-                    {is_authenticated && draft && <NavLink to={"/front-end/draft"} className="link">Текущая заявка</NavLink>}
+                    {/* {is_authenticated && draft && <NavLink to={"/front-end/draft"} className="link">Текущая заявка</NavLink>} */}
                     {/* <Link className="link" to={"/"} >Заявки</Link> */}
                 </Nav>
             </NavbarCollapse>

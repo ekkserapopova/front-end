@@ -2,10 +2,29 @@
     width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #35525A;
     border-radius: 8px;
     background: #000 !important;
-    --bs-table-bg: #35525A;
     border-color: #1F3E47;
-    --bs-table-color: rgb(223, 233, 241)
+    --bs-table-color: rgb(223, 233, 241);
+    z-index: 1;
+    --bs-table-bg: none
 }
+
+tr,ul{
+    background-color: #35525A !important;
+}
+.tableApps tbody tr:hover,
+.table-row:hover ul,
+.table-row:hover li {
+    background-color: #496870 !important;
+    cursor: pointer;
+    z-index: 20;
+    /* color: #your_text_color; */
+}
+
+/* .tableApps tbody tr:hover{
+    background-color: #496870 !important;
+    
+    cursor: pointer;
+    z-index: 20;
+} */
