@@ -26,6 +26,7 @@ const Page: FC = () => {
   const [appId, setAppId] = useState(-1);
   const appl = useSelector((state:RootState)  => state.draft.appId)
   const appl2 = useSelector((state:RootState)  => state.draft.app)
+  const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
 //   setAppId(appl)
   console.log(appl)
 
@@ -98,10 +99,10 @@ const Page: FC = () => {
     <>
       <Navibar draft={true} />
       <Breadcrumbs items={breadcrumbsItems} />
-      {(appId !== -1 || appl2) &&
+      {(appId !== -1 || appl2) && is_authenticated && (
       <Button className="draft" onClick={handleDraftButtonClick}>
         Текущая заявка
-      </Button>
+      </Button>)
       
     }
 

@@ -89,7 +89,14 @@ const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", documen
     return(
         <>
         <div className="main-card">
-            {document_image !== 'not_found.jpg' ? <Card.Img className="main-card-image" src={document_image}></Card.Img>: <Card.Img className="main-card-image" src={not_found}></Card.Img>}
+        <Card.Img
+            className="main-card-image"
+            src={document_image}
+            onError={(e: any) => {
+              e.target.onerror = null; 
+              e.target.src = not_found; 
+            }}
+          ></Card.Img>
             <Card.Body className="main-card-body">
                 <Card.Title className="main-card-title">{document_title}</Card.Title>
                 <Card.Text className="main-card-text">{document_overview}</Card.Text>
