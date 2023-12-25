@@ -11,10 +11,13 @@ import DocumentsPage from './pages/main-page/DocumentsPage';
 import DocumentPage from './pages/second-page/DocumentPage';
 import SignupPage from './pages/signup-page/SignupPage';
 import { ToastContainer } from 'react-toastify';
-import SelectedDocsPage from './pages/selected-docs-page/SelectedDocsPage';
+// import SelectedDocsPage from './pages/selected-docs-page/SelectedDocsPage';
 import './pages/selected-docs-page/s.css'
 import UserApplicationsPage from './pages/user-applications/UserApplicationsPage';
 import ApplicationPage from './pages/one-app-page/OneApplicationPage';
+import TableDocumentsPage from './pages/table-documents/TableDocumentsPage';
+import OneDocumentPage from './pages/one-document/OneDocumentPage';
+import TrashPage from './pages/trash-page/TrashPage';
 //import { useCurrentRespId } from "./slices/RespSlices"
 
 const cookies = new Cookies();
@@ -62,9 +65,12 @@ function App() {
         <Route path="/front-end/:id" element={<DocumentPage />} />
         <Route path="/front-end/login" element={<LoginPage/>} />
         <Route path="/front-end/signup" element={<SignupPage/>}/>
-        <Route path="/front-end/draft" element={<SelectedDocsPage/>}/>
+        {/* <Route path="/front-end/draft" element={<SelectedDocsPage/>}/> */}
         <Route path="/front-end/userapplications" element={<UserApplicationsPage/>}/>
         <Route path="/front-end/userapplications/:id" element={<ApplicationPage />}/>
+        <Route path="/front-end/documents" element={<TableDocumentsPage />}/>
+        <Route path="/front-end/documents/:id" element={<OneDocumentPage />}/>
+        <Route path="/front-end/trash" element={<TrashPage />}/>
       </Routes>
     </Router>
     <ToastContainer

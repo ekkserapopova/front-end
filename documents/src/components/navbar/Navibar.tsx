@@ -44,6 +44,7 @@ const Navibar: FC<SearchProps> = () => {
       };
     const router = useNavigate()
     const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
+    const is_moderator = useSelector((state: RootState) => state.auth.is_moderator)
     return (
     <Navbar className="navibar" collapseOnSelect expand="lg" variant="light" >
         <NavbarBrand className="navbar-brand-content">
@@ -53,11 +54,12 @@ const Navibar: FC<SearchProps> = () => {
         <div className="nav-list">
             <NavbarToggle aria-controls="responsive-navbar-nav" />
             <NavbarCollapse id="responsive-navbar-nav" className="responsive-navbar-nav">
-                <Nav className={"mr-auto2"} >
+                <Nav className={is_moderator ? "mr-auto" : "mr-auto2" } >
                     <NavLink to={"/front-end"} className="link"  /*onClick={resetSearch}*/>Главная</NavLink>
-                    {is_authenticated && <NavLink to={"/front-end/userapplications"} className="link">Мои заявки</NavLink>}
+                    {is_authenticated && <NavLink to={"/front-end/userapplications"} className="link">{is_moderator ?"Заявки":" Мои заявки"}</NavLink>}
                     {/* {is_authenticated && draft && <NavLink to={"/front-end/draft"} className="link">Текущая заявка</NavLink>} */}
                     {/* <Link className="link" to={"/"} >Заявки</Link> */}
+                    {is_moderator && <NavLink to={"/front-end/documents"} className="link">Список услуг</NavLink>}
                 </Nav>
             </NavbarCollapse>
             <div className="buttons-auth">

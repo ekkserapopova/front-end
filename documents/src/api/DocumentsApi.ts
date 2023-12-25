@@ -40,6 +40,12 @@ export interface Applications {
   reason_for_change: string;
   /** Application status */
   application_status?: "created" | "in_progress" | "completed" | "canceled" | "deleted";
+  /**
+   * Mfc status
+   * @minLength 1
+   * @maxLength 15
+   */
+  mfc_status?: string;
   /** Client id */
   client_id: number;
   /** Moderator id */
@@ -67,14 +73,13 @@ export interface Documents {
   document_description?: string;
   /**
    * Document image
-   * @minLength 1
    * @maxLength 10000
    */
-  document_image?: string;
+  document_image?: string | null;
   /** Document price */
   document_price: number;
   /** Document status */
-  document_status: "active" | "deleted";
+  document_status: "active" | "deleted" | "trash";
 }
 
 export interface User {
@@ -185,7 +190,7 @@ export class HttpClient<SecurityDataType = unknown> {
   private format?: ResponseType;
 
   constructor({ securityWorker, secure, format, ...axiosConfig }: ApiConfig<SecurityDataType> = {}) {
-    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "http://127.0.0.1:8000", withCredentials:true });
+    this.instance = axios.create({ ...axiosConfig, baseURL: axiosConfig.baseURL || "http://127.0.0.1:8000" });
     this.secure = secure;
     this.format = format;
     this.securityWorker = securityWorker;
@@ -291,10 +296,21 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request GET:/applications/
      * @secure
      */
-    applicationsList: (params: RequestParams = {}) =>
+    applicationsList: (
+      query?: {
+        /** Status */
+        status?: string;
+        /** From */
+        startdate?: string;
+        /** To */
+        enddate?: string;
+      },
+      params: RequestParams = {},
+    ) =>
       this.request<void, any>({
         path: `/applications/`,
         method: "GET",
+        query: query,
         secure: true,
         ...params,
       }),
@@ -350,6 +366,22 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       }),
 
     /**
+     * No description
+     *
+     * @tags applications
+     * @name ApplicationsMfcUpdate
+     * @request PUT:/applications/{id}/mfc/
+     * @secure
+     */
+    applicationsMfcUpdate: (id: string, params: RequestParams = {}) =>
+      this.request<void, any>({
+        path: `/applications/${id}/mfc/`,
+        method: "PUT",
+        secure: true,
+        ...params,
+      }),
+
+    /**
      * @description Обновляет информацию о документе клиент
      *
      * @tags applications
@@ -394,11 +426,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      * @request GET:/documents/
      * @secure
      */
-    documentsList: (params: RequestParams = {}) =>
-      this.request<void, any>({
+    documentsList: (
+      query?: {
+        /** Document title */
+        title?: string;
+        /** Minimum price */
+        minprice?: string;
+        /** Maximum price */
+        maxprice?: string;
+      },
+      params: RequestParams = {},
+    ) =>
+      this.request<Documents[], any>({
         path: `/documents/`,
         method: "GET",
+        query: query,
         secure: true,
+        format: "json",
         ...params,
       }),
 
@@ -502,6 +546,25 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         path: `/documents_applicaions/${documentId}/${applicationId}/`,
         method: "DELETE",
         secure: true,
+        ...params,
+      }),
+  };
+  getuser = {
+    /**
+     * No description
+     *
+     * @tags getuser
+     * @name GetuserCreate
+     * @request POST:/getuser/
+     * @secure
+     */
+    getuserCreate: (data: User, params: RequestParams = {}) =>
+      this.request<User, any>({
+        path: `/getuser/`,
+        method: "POST",
+        body: data,
+        secure: true,
+        format: "json",
         ...params,
       }),
   };

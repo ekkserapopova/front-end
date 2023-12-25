@@ -19,6 +19,7 @@ interface AppParams{
 export interface ApplicationProps{
     application: Applications;
     documents: Documents[]
+    client_email: string
 }
 
 console.log(1234567890)
@@ -110,6 +111,7 @@ const ApplicationPage:FC = () =>{
                     <Col >
                     <OneApplication application={application.application} 
                                     documents={application.documents}
+                                    client_email={application.client_email}
                                     draft={draft}
                                     surname={surname}
                                     setSurname={setSurname}

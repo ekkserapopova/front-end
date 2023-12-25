@@ -16,6 +16,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { appSetReset } from "../../store/slices/draftSlice";
+import { MdDelete } from "react-icons/md";
 
 const Page: FC = () => {
   const [documents, setDocuments] = useState<Documents[]>([]);
@@ -27,6 +28,7 @@ const Page: FC = () => {
   const appl = useSelector((state:RootState)  => state.draft.appId)
   const appl2 = useSelector((state:RootState)  => state.draft.app)
   const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
+  const is_moderator = useSelector((state: RootState) => state.auth.is_moderator);
 //   setAppId(appl)
   console.log(appl)
 
@@ -46,7 +48,7 @@ const Page: FC = () => {
 
   const searchDocumentsPrice = async () => {
     try {
-      const results = await axios.get('http://127.0.0.1:8000/documents/',{
+      const results = await axios.get('/documents/',{
         params:{
           title: searchValue,
           minprice: isNaN(Number(searchValueMax)) ? 0 : Number(searchValueMin),
@@ -55,19 +57,16 @@ const Page: FC = () => {
         withCredentials: true
       }, )
 
-      setDocuments(results.data);
+      setDocuments(results.data.documents);
 
       const draftApp = async () => {
         try {
-          const app = await axios.get("http://127.0.0.1:8000/applications/", {
-            params: {
-              status: "created",
-            },
-            withCredentials: true,
-          });
-          console.log(appId)
-          dispatch(appSetReset({appId: app.data[0].application.application_id}))
-          setAppId(app.data[0].application.application_id);
+          const app = results.data.draft_id
+          console.log(app)
+          dispatch(appSetReset({appId: app}))
+          setAppId(app);
+          console.log(appl)
+          // dispatch(appSetReset(appId))
         } catch {
           console.log("нет черновика");
         }
@@ -79,10 +78,12 @@ const Page: FC = () => {
   };
 
   const handleDraftButtonClick = () => {
-    dispatch(appSetReset(appId))
+    searchDocumentsPrice()
+    dispatch(appSetReset({appId: appl}))
     if (appId === undefined){
         toast.error("Заявка отсутствует");
     }else if (appId !== -1 || appl2) {
+      console.log(appl)
         router(`/front-end/userapplications/${appl}`, { replace: true });
     } else {
         toast.error("Заявка отсутствует");
@@ -93,18 +94,19 @@ const Page: FC = () => {
 
   useEffect(() => {
     searchDocumentsPrice();
-  }, [appId]);
+  }, [appl2]);
 
   return (
     <>
       <Navibar draft={true} />
       <Breadcrumbs items={breadcrumbsItems} />
-      {(appId !== -1 || appl2) && is_authenticated && (
+      {is_authenticated && (!is_moderator ?
       <Button className="draft" onClick={handleDraftButtonClick}>
         Текущая заявка
-      </Button>)
-      
-    }
+      </Button>
+      : 
+        <MdDelete onClick={() => router(`/front-end/trash`, {replace: true})} className='trash' />)
+      }
 
       <Search
         value={searchValue}

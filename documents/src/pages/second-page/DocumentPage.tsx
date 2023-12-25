@@ -23,7 +23,7 @@ const Document:FC = () =>{
     
     const search = async()=>{
         try{
-            const result = await axios.get(`http://127.0.0.1:8000/documents/${id}/`)
+            const result = await axios.get(`/documents/${id}/`)
             console.log("search func")
             await setDocument(result.data)
         } catch{

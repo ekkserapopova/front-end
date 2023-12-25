@@ -26,7 +26,19 @@ paths:
     get:
       operationId: applications_list
       description: Возвращает список заявок
-      parameters: []
+      parameters:
+      - name: status
+        in: query
+        description: Status
+        type: string
+      - name: startdate
+        in: query
+        description: From
+        type: string
+      - name: enddate
+        in: query
+        description: To
+        type: string
       responses:
         '200':
           description: ''
@@ -65,6 +77,21 @@ paths:
       parameters: []
       responses:
         '204':
+          description: ''
+      tags:
+      - applications
+    parameters:
+    - name: id
+      in: path
+      required: true
+      type: string
+  /applications/{id}/mfc/:
+    put:
+      operationId: applications_mfc_update
+      description: ''
+      parameters: []
+      responses:
+        '200':
           description: ''
       tags:
       - applications
@@ -121,10 +148,26 @@ paths:
     get:
       operationId: documents_list
       description: Возвращает список активных документов
-      parameters: []
+      parameters:
+      - name: title
+        in: query
+        description: Document title
+        type: string
+      - name: minprice
+        in: query
+        description: Minimum price
+        type: string
+      - name: maxprice
+        in: query
+        description: Maximum price
+        type: string
       responses:
         '200':
-          description: ''
+          description: Documents
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Documents'
       tags:
       - documents
     post:
@@ -225,6 +268,24 @@ paths:
       in: path
       required: true
       type: string
+  /getuser/:
+    post:
+      operationId: getuser_create
+      description: ''
+      parameters:
+      - name: data
+        in: body
+        required: true
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+      - getuser
+    parameters: []
   /login:
     post:
       operationId: login_create
@@ -402,6 +463,11 @@ definitions:
         - completed
         - canceled
         - deleted
+      mfc_status:
+        title: Mfc status
+        type: string
+        maxLength: 15
+        minLength: 1
       client_id:
         title: Client id
         type: integer
@@ -440,7 +506,7 @@ definitions:
         title: Document image
         type: string
         maxLength: 10000
-        minLength: 1
+        x-nullable: true
       document_price:
         title: Document price
         type: number
@@ -450,6 +516,7 @@ definitions:
         enum:
         - active
         - deleted
+        - trash
   User:
     required:
     - email

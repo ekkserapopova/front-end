@@ -1,0 +1,78 @@
+.doc-card{
+    width: 600px;
+    height: 760px;
+    background-color: aliceblue;
+    margin: 50px auto;
+    border-radius: 8px;
+    margin-bottom: 30px !important;
+}
+
+.doc-card-content{
+    background-color: aliceblue;
+    text-align: center;
+    border-radius: 8px;
+
+}
+
+.doc-text{
+    color:#142d35;
+    background-color: aliceblue;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 10px auto;
+}
+
+.doc-input{
+    background-color: aliceblue;
+}
+
+
+.doc-input-title,
+.doc-input-overview,
+.doc-input-description,
+.doc-input-price{
+    width: 500px;
+    height: 40px;
+    margin: 10px auto;
+    background-color: aliceblue;
+    border: 1px solid #142d35;
+    color: aliceblue;
+    padding: 0 5px;
+    animation: cursorBlink 2s infinite;
+    color:hsl(195, 45%, 14%);
+    font-size: 16px !important;
+}
+
+.doc-input-file{
+    width: 500px;
+    height: 40px;
+    margin: 10px auto;
+    background-color: aliceblue;
+}
+
+.doc-input-title::placeholder,
+.doc-input-overview::placeholder,
+.doc-input-description::placeholder,
+.doc-input-price::placeholder{
+    font-size: 16px;
+}
+
+.doc-btn{
+    width: 300px;
+    margin: 10px auto;
+    background-color: #1F3E47;
+    border: 1px solid #1F3E47;
+}
+
+.doc-btn:hover{
+    background-color: #2e515b;
+    border: 1px solid #2e515b;
+}
+
+.doc-btn:active{
+    background-color: #2e515b !important; 
+    border: 1px solid #2e515b !important;
+}
+
+
+

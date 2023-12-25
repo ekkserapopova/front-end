@@ -17,7 +17,7 @@
     background-color: aliceblue;
     border: 1px solid aliceblue;
     color: #1F3E47;
-    position: fixed;
+    position: absolute;
     z-index: 1000;
 }
 
@@ -25,6 +25,20 @@
     background-color: rgb(215, 221, 227) !important;
     color: #1F3E47;
     border: 1px solid rgb(215, 221, 227);
+}
+
+.trash{
+    color: 'aliceblue';
+    background: 'none';
+    width: 40px;
+    margin-left: 1370px;
+    position: absolute;
+    z-index: 1000;
+}
+
+.trash:hover{
+    cursor: pointer;
+    color: rgb(216, 223, 230);
 }
 
 

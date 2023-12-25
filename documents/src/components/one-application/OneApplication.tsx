@@ -12,6 +12,7 @@ import { Api } from "../../api/DocumentsApi";
 export type AppTableProps = {
   application: Applications;
   documents: Documents[];
+  client_email: string
   draft?: boolean;
   onSubmit: () => void;
   onSubmitDelete: () => void;
@@ -25,6 +26,7 @@ export type AppTableProps = {
 const OneApplication: FC<AppTableProps> = ({
   application,
   documents,
+  client_email,
   draft = false,
   onSubmit,
   onSubmitDelete,
@@ -101,6 +103,9 @@ const OneApplication: FC<AppTableProps> = ({
           </div>
           <div className="more-app">
             <Card.Text className="more-app">
+              Email Клиента: {client_email}
+            </Card.Text>
+            <Card.Text className="more-app">
               Дата создания: {formatDateTime(application.date_of_application_creation)}
             </Card.Text>
             <Card.Text className="more-app">
@@ -161,7 +166,7 @@ const OneApplication: FC<AppTableProps> = ({
                       {loading ? (
                         <RingLoader color="#007bff" loading={loading} size={20} />
                       ) : (
-                        <FaTrash className="trash" />
+                        <FaTrash className="trash-doc" />
                       )}
                     </Button>
                   </td>

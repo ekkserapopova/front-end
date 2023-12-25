@@ -12,4 +12,64 @@
     /*z-index: 999; /* Положение над всеми элементами на странице */
     /*font-size: 20px;
     color: #35525A; /* Цвет текста */
+
+.p{
+    font-size: 20px;
+    color: aliceblue;
+    margin-left: 680px;
+}
   
+.date-input{
+    width: 200px;
+    border: 1px solid aliceblue;
+    color: rgb(192, 202, 211);
+    border-radius: 5px;
+}
+
+.dates{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    justify-content: space-between;
+}
+
+.user-input{
+    color: aliceblue;
+    margin-left: 600px;
+    width: 300px;
+    border: 1px solid aliceblue;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.user-input::placeholder{
+    color: rgb(192, 202, 211);
+    font-size: 16px;
+    
+}
+
+
+.button-container{
+    margin-left: 695px;
+    margin-top: 10px;
+}
+
+.filters-btn{
+    background-color: aliceblue;
+    color: #1F3E47;
+    border: 1px solid aliceblue;
+}
+
+.filters-btn:hover{
+    background-color: rgb(176, 192, 206);
+    color: #1F3E47;
+    border: 1px solid rgb(176, 192, 206);
+}
+
+.filters-btn:active{
+    background-color: rgb(176, 192, 206) !important;
+    color: #1F3E47 !important;
+    border: 1px solid rgb(176, 192, 206) !important
+}
+
