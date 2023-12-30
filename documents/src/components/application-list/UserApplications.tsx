@@ -104,9 +104,9 @@ const UserApplications: React.FC<DocTableProps> = ({ applications }) => {
                                 </td>
                                 {is_moderator &&
                                 <>
-                               <td>{applicationProps.application?.mfc_status}</td>
-                               <td><Button onClick={() => cancelApp(applicationProps.application.application_id)} className='filters-btn'>Отменить</Button></td>
-                               <td><Button onClick={() => completeApp(applicationProps.application.application_id)} className='filters-btn'>Завершить</Button></td>
+                                    <td>{applicationProps.application?.mfc_status}</td>
+                                    {(applicationProps.application?.application_status !== 'completed' && applicationProps.application?.application_status !== 'canceled') ? <td><Button onClick={() => cancelApp(applicationProps.application.application_id)} className='filters-btn'>Отменить</Button></td>: <td></td>}
+                                    {(applicationProps.application?.application_status !== 'completed' && applicationProps.application?.application_status !== 'canceled') ? <td><Button onClick={() => completeApp(applicationProps.application.application_id)} className='filters-btn'>Завершить</Button></td>: <td></td>}
                                </>
                                 }
                                 {/* {is_moderator &&

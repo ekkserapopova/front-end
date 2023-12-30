@@ -21,6 +21,25 @@
     z-index: 1000;
 }
 
+.draft2{
+    margin-left: 1270px;
+    background-color: rgb(140, 149, 156);
+    border: 1px solid aliceblue;
+    color: #1F3E47;
+    position: absolute;
+    cursor: not-allowed;
+    z-index: 1000;
+}
+.draft2:hover{
+    margin-left: 1270px;
+    background-color: rgb(140, 149, 156);
+    border: 1px solid aliceblue;
+    color: #1F3E47;
+    position: absolute;
+    cursor: not-allowed;
+    z-index: 1000;
+}
+
 .draft:hover{
     background-color: rgb(215, 221, 227) !important;
     color: #1F3E47;

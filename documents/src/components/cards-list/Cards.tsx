@@ -26,9 +26,10 @@ interface CardsProps{
     document_price? : number
     document_buttonText? : string
     onClick? : () => void;
+    udal: () => void
 }
 
-const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", document_image, document_overview, document_price, document_title, document_id}) => {
+const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", document_image, document_overview, document_price, document_title, document_id, udal}) => {
     const router = useNavigate()
     const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
     const is_moderator = useSelector((state: RootState) => state.auth.is_moderator);
@@ -79,7 +80,7 @@ const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", documen
                 document_status: 'trash'
             }, {withCredentials: true})
             toast.success("Документ успешно удален")
-            
+            udal()
         } catch{
             toast.error('ошибка')
         }

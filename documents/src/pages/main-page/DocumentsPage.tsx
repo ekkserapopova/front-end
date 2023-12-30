@@ -101,7 +101,7 @@ const Page: FC = () => {
       <Navibar draft={true} />
       <Breadcrumbs items={breadcrumbsItems} />
       {is_authenticated && (!is_moderator ?
-      <Button className="draft" onClick={handleDraftButtonClick}>
+      <Button className={appl !== -1 ? "draft" : "draft2"} onClick={handleDraftButtonClick}>
         Текущая заявка
       </Button>
       : 
@@ -124,7 +124,7 @@ const Page: FC = () => {
       <Row md={4} className="row-main">
         {documents?.map((item, index) => (
           <Col key={index} className="g-col">
-            <Cards {...item} />
+            <Cards {...item} udal={searchDocumentsPrice}/>
           </Col>
         ))}
       </Row>

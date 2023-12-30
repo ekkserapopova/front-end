@@ -59,7 +59,7 @@ const Navibar: FC<SearchProps> = () => {
                     {is_authenticated && <NavLink to={"/front-end/userapplications"} className="link">{is_moderator ?"Заявки":" Мои заявки"}</NavLink>}
                     {/* {is_authenticated && draft && <NavLink to={"/front-end/draft"} className="link">Текущая заявка</NavLink>} */}
                     {/* <Link className="link" to={"/"} >Заявки</Link> */}
-                    {is_moderator && <NavLink to={"/front-end/documents"} className="link">Список услуг</NavLink>}
+                    {is_moderator && <NavLink to={"/front-end/documents"} className="link">Редактирование услуг</NavLink>}
                 </Nav>
             </NavbarCollapse>
             <div className="buttons-auth">
