@@ -29,6 +29,7 @@ const Page: FC = () => {
   const appl2 = useSelector((state:RootState)  => state.draft.app)
   const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
   const is_moderator = useSelector((state: RootState) => state.auth.is_moderator);
+  const [mock, setMock] = useState(false)
 //   setAppId(appl)
   console.log(appl)
 
@@ -48,6 +49,7 @@ const Page: FC = () => {
 
   const searchDocumentsPrice = async () => {
     try {
+      console.log(mock)
       const results = await axios.get('/documents/',{
         params:{
           title: searchValue,
@@ -64,8 +66,18 @@ const Page: FC = () => {
       console.log(appl)
     } catch {
       setDocuments(mockDocuments);
+      setMock(true)
     }
   };
+
+  const filterDocs = () => {
+    const result = mockDocuments.filter((item: Documents) => {
+      const isTitleMatching = item.document_title.includes(searchValue);
+      const isPriceMatching = item.document_price >= Number(searchValueMin) && item.document_price <= Number(searchValueMax ? searchValueMax : 10000) ; // Предположим, что minPrice и maxPrice заданы где-то в вашем коде
+      return isTitleMatching && isPriceMatching;
+})
+    setDocuments(result)
+  }
 
   const handleDraftButtonClick = () => {
     // searchDocumentsPrice()
@@ -102,14 +114,14 @@ const Page: FC = () => {
       <Search
         value={searchValue}
         setValue={(searchValue) => handleSearchValueChange(searchValue)}
-        onSubmit={searchDocumentsPrice}
+        onSubmit={!mock ? searchDocumentsPrice: filterDocs}
         valueMax={isNaN(Number(searchValueMax)) ? searchValueMax.replace(/[^0-9]/g, "") : searchValueMax}
         errorMax={isNaN(Number(searchValueMax)) ? true : false}
         errorMin={isNaN(Number(searchValueMin)) ? true : false}
         valueMin={isNaN(Number(searchValueMin)) ? searchValueMin.replace(/[^0-9]/g, "") : searchValueMin}
         setValueMax={(searchValueMax) => handleSearchValueMax(searchValueMax)}
         setValueMin={(searchValueMin) => handleSearchValueMin(searchValueMin)}
-        onSubmitPrice={searchDocumentsPrice}
+        onSubmitPrice={!mock ? searchDocumentsPrice: filterDocs}
       />
 
       <Row md={4} className="row-main">
