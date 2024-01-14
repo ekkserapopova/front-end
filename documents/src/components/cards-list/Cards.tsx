@@ -29,7 +29,7 @@ interface CardsProps{
     udal: () => void
 }
 
-const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", document_image, document_overview, document_price, document_title, document_id, udal}) => {
+const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", document_image, document_overview, document_price, document_title, document_id}) => {
     const router = useNavigate()
     const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
     const is_moderator = useSelector((state: RootState) => state.auth.is_moderator);
@@ -37,16 +37,6 @@ const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", documen
     
     const dispatch = useDispatch();
     // const [appId, setAppId] = useState(-1);
-    
-    const draftApp = async () => {
-        try {
-          dispatch(appSetReset({app:true, appId:draft_id}))
-          const appl = useSelector((state:RootState)  => state.draft.appId)
-          console.log(appl)
-        } catch {
-          console.log("нет черновика");
-        }
-      };
 
     const addDocToApp = async () => {
         try {
@@ -56,18 +46,13 @@ const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", documen
                 session_id: cookies.get("session_id")
             }, {withCredentials:true});
             toast.success('Документ успешно добавлен')
-            draftApp()
+            dispatch(appSetReset({app:true, appId:draft_id}))
             console.log(draft_id)
             dispatch(appSetReset({app:true, appId:draft_id}))
-            
+            // await axios.get('/documents/', {withCredentials: true})
             // cookies.set("session_id", response.data["session_id"],)
         } catch (error) {
-            toast.error('Документ уже добавлен',{
-                style: {
-                    backgroundColor: 'white',
-                    color: 'black'
-                }
-            })
+            toast.error('Документ уже добавлен')
         }
         
     };
@@ -80,7 +65,7 @@ const Cards:FC<CardsProps> = ({document_buttonText="Подробнее", documen
                 document_status: 'trash'
             }, {withCredentials: true})
             toast.success("Документ успешно удален")
-            udal()
+            // udal()
         } catch{
             toast.error('ошибка')
         }

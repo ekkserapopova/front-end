@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { Button, Card } from "react-bootstrap"
 import './OneCard.css'
 import { RootState } from "../../store/store"
@@ -37,7 +37,7 @@ const OneCard: FC<CardProps> = ({document_image, document_title, document_descri
     const params = useParams<DocumentParams>()
     const id = Number(params.id)
     const dispatch = useDispatch();
-    const [appId, setAppId] = useState(-1);
+    const appId = -1
     const addDocToApp = async () => {
         try {
             await api.post(`/documents/application/${id}/`, {
@@ -50,8 +50,6 @@ const OneCard: FC<CardProps> = ({document_image, document_title, document_descri
                     color: 'black'
                 }
             })
-            
-            draftApp()
             console.log(appId)
             dispatch(appSetReset({app:true, appId:appId}))
             router('/front-end')
@@ -66,24 +64,6 @@ const OneCard: FC<CardProps> = ({document_image, document_title, document_descri
             router('/front-end')
         } 
     };
-
-    const draftApp = async () => {
-        try {
-          const app = await axios.get("http://127.0.0.1:8000/applications/", {
-            params: {
-              status: "created",
-            },
-            withCredentials: true,
-          });
-          
-          setAppId(app.data[0].application.application_id);
-          dispatch(appSetReset({app:true, appId:app.data[0].application.application_id}))
-          const appl = useSelector((state:RootState)  => state.draft.appId)
-          console.log(appl)
-        } catch {
-          console.log("нет черновика");
-        }
-      };
 
     return(
         <>

@@ -4,6 +4,7 @@ import authReducer from './slices/authSlice'
 import min_priceReducer from './slices/priceMinSlice'
 import max_priceReducer from './slices/priceMaxSlice'
 import draftReducer from './slices/draftSlice'
+import userReducer from './slices/userSlice'
 
 export const store =  configureStore({
     reducer:{
@@ -11,7 +12,8 @@ export const store =  configureStore({
         auth: authReducer,
         min_price: min_priceReducer,
         max_price: max_priceReducer,
-        draft: draftReducer
+        draft: draftReducer,
+        user: userReducer
     }
 })
 

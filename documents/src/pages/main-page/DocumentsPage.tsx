@@ -56,29 +56,19 @@ const Page: FC = () => {
         },
         withCredentials: true
       }, )
-
       setDocuments(results.data.documents);
-
-      const draftApp = async () => {
-        try {
-          const app = results.data.draft_id
-          console.log(app)
-          dispatch(appSetReset({appId: app}))
-          setAppId(app);
-          console.log(appl)
-          // dispatch(appSetReset(appId))
-        } catch {
-          console.log("нет черновика");
-        }
-      };
-      draftApp();
+      const app = results.data.draft_id
+      console.log(app)
+      dispatch(appSetReset({appId: app}))
+      setAppId(app);
+      console.log(appl)
     } catch {
       setDocuments(mockDocuments);
     }
   };
 
   const handleDraftButtonClick = () => {
-    searchDocumentsPrice()
+    // searchDocumentsPrice()
     dispatch(appSetReset({appId: appl}))
     if (appId === undefined){
         toast.error("Заявка отсутствует");

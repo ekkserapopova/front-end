@@ -12,6 +12,10 @@ import { toast } from 'react-toastify';
 
 export type DocTableProps = {
     applications: ApplicationsProps[];
+    dateFrom: string
+    dateTo: string
+    setDateFrom: (dateFrom:string) => void
+    setDateTo: (dateTo:string) => void
 };
 
 const UserApplications: React.FC<DocTableProps> = ({ applications }) => {
@@ -54,6 +58,20 @@ const UserApplications: React.FC<DocTableProps> = ({ applications }) => {
 
     return (
         <>
+            {/* <div className='dates'>
+                            <input
+                                className='date-input'
+                                type='date'
+                                value={dateFrom}
+                                onChange={event => setDateFrom(event.target.value)}
+                            ></input>
+                            <input
+                                className='date-input'
+                                type='date'
+                                value={dateTo}
+                                onChange={(e) => setDateTo(e.target.value)}
+                            ></input>
+                        </div> */}
             <div>
                 <Table className='tableApps'>
                     <thead>

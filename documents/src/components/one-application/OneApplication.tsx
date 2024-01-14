@@ -58,7 +58,7 @@ const OneApplication: FC<AppTableProps> = ({
 
       const application_id = application.data[0].application.application_id;
 
-      await api.documentsApplicaions.documentsApplicaionsDelete(document_id.toString(), application_id)
+      await api.documentsApplicaions.documentsApplicaionsDelete(document_id.toString(), application_id, {withCredentials:true})
 
       setDocuments((prevDocuments) =>
         prevDocuments.filter((doc) => doc.document_id !== document_id)

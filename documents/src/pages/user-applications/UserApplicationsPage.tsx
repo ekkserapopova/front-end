@@ -8,9 +8,9 @@ import { useSelector } from 'react-redux'
 import { Applications, Documents } from '../../api/DocumentsApi.ts';
 import UserApplications from '../../components/application-list/UserApplications.tsx';
 import './UserApplications.css'
-import { Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+// import { setUser } from '../../store/slices/userSlice.ts';
+// import { useNavigate } from 'react-router-dom';
 
 
 export interface ApplicationsProps {
@@ -22,6 +22,7 @@ export interface ApplicationsProps {
 const UserApplicationsPage = () => {
     // const params = useParams();
     // const id = params.id === undefined ? '' : params.id;
+    // const dispatch: AppDispatch = useDispatch();
     const [applications, setApplications] = useState([])
     const is_authenticated = useSelector((state: RootState) => state.auth.is_authenticated);
     const is_moderator = useSelector((state: RootState) => state.auth.is_moderator);
@@ -31,14 +32,19 @@ const UserApplicationsPage = () => {
     const [statusField1, setStatusField1] = useState(true);
     const [statusField2, setStatusField2] = useState(true);
     const [statusField3, setStatusField3] = useState(true);
-    const router = useNavigate()
+    const filterUser = true
+    // const userName = useSelector((state: RootState) => state.user.value);
+    // const router = useNavigate()
     // const [filters, setFilters] = useState(false)
     
     const breadcrumbsItems = [
         { label: 'Все документы', link: '/front-end' },
         { label: 'Все заявки', link: '' } 
       ];
+
+      
     const getApps = async () => {
+      console.log(user)
       const statusArray = [];
       if (statusField1) statusArray.push('in_progress');
       if (statusField2) statusArray.push('completed');
@@ -53,13 +59,13 @@ const UserApplicationsPage = () => {
             withCredentials: true,
         });
         // console.log(response.data)
-        console.log(dateTo)
+        // console.log(dateTo)
         const applications = response.data
-        const filtered_data = applications.filter((item: ApplicationsProps) => {
-            const isClientMatching = !user || item.client_email.includes(user);
-            return isClientMatching;
-         });
-        // console.log(response.data)
+        const filtered_data =  filterUser ? applications.filter((item: ApplicationsProps) => {
+              const isClientMatching = !user || item.client_email.includes(user);
+              return isClientMatching;
+        }) : applications;
+        // console.log(userName)
         const newArr = filtered_data.map((item:ApplicationsProps) => ({
             application:{
             application_id: item.application.application_id,
@@ -81,20 +87,22 @@ const UserApplicationsPage = () => {
         }
       }
 
+    // const handleFilterUser = () => {
+    //   getApps();
+    //   setFilterUser(true)
+    // }
 
 
     useEffect(() => {
-        getApps();
         if (is_moderator){
-          const pollInterval = 5000; // Интервал в миллисекундах
-          const pollTimer = setInterval(getApps, pollInterval); // Устанавливаем таймер опроса
+          const pollInterval = 3000; 
+          const pollTimer = setInterval(getApps, pollInterval); 
+          
           return () => clearInterval(pollTimer);
+        } else {
+          getApps()
         }
-        
-
-    // Очистить таймер при размонтировании компонента
-      
-    }, [dateFrom, dateTo, user, statusField1, statusField2, statusField3])
+    }, [dateFrom, dateTo, statusField1, statusField2, statusField3, user])
 
     
 
@@ -143,7 +151,7 @@ const UserApplicationsPage = () => {
                 <input type="checkbox" checked={statusField3} onChange={() => setStatusField3(!statusField3)} />
               </label>
             </div>
-            {/* <div className='button-container'><Button onClick={getApps} className='filters-btn'>Применить</Button></div> */}
+            {/* <div className='button-container'><Button onClick={handleFilterUser} className='filters-btn'>Применить</Button></div> */}
           </div>)
           }
           {is_authenticated ? (
@@ -165,7 +173,11 @@ const UserApplicationsPage = () => {
                     Заявки
                   </div>
                 </div>
-                <UserApplications applications={applications} />
+                <UserApplications applications={applications}
+                                  dateFrom={dateFrom}
+                                  dateTo={dateTo}
+                                  setDateFrom={setDateFrom}
+                                  setDateTo={setDateTo} />
               </div>
             ) : <div style={{ fontSize: '30px', color: 'aliceblue', marginLeft: '450px', marginTop: '50px' }}>
                   Нет заявок с соответсвующими фильтрами
