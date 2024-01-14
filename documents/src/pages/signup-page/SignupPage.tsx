@@ -45,7 +45,7 @@ const SignupnPage:FC = () =>{
     }, [])
     return(
         <>
-            <Navibar showSearch={false}/>
+            <Navibar />
             <Breadcrumbs items={breadcrumbsItems}/>
             <SignUp valueEmail={valueEmail}
                     valuePassword={valuePassword}
