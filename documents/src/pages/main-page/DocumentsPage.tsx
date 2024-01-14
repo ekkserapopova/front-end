@@ -90,12 +90,13 @@ const Page: FC = () => {
     <>
       <Navibar draft={true} />
       <Breadcrumbs items={breadcrumbsItems} />
-      {is_authenticated && (!is_moderator ?
+      {is_authenticated && 
       <Button className={appl !== -1 ? "draft" : "draft2"} onClick={handleDraftButtonClick}>
         Текущая заявка
-      </Button>
-      : 
-        <MdDelete onClick={() => router(`/front-end/trash`, {replace: true})} className='trash' />)
+      </Button> 
+      }
+      {is_moderator &&
+        <MdDelete onClick={() => router(`/front-end/trash`, {replace: true})} className='trash' />
       }
 
       <Search
